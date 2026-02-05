@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Sathish",
+        "age": 20,
+        "grade": "A",
+        "subjects": ["Math", "Physics", "Chemistry"],
+        "marks": {
+            "Math": 95,
+            "Physics": 88,
+            "Chemistry": 92
+        }
+    },
+    {
+        "id": 2,
+        "name": "Kannan",
+        "age": 21,
+        "grade": "B+",
+        "subjects": ["Biology", "Chemistry", "English"],
+        "marks": {
+            "Biology": 85,
+            "Chemistry": 78,
+            "English": 88
+        }
+    },
+    {
+        "id": 3,
+        "name": "John",
+        "age": 19,
+        "grade": "A-",
+        "subjects": ["History", "Math", "Economics"],
+        "marks": {
+            "History": 90,
+            "Math": 85,
+            "Economics": 87
+        }
+    }
+]

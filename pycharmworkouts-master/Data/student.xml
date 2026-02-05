@@ -1,0 +1,17 @@
+<data>
+    <record>
+        <id>1</id>
+        <name>Raj</name>
+        <score>85</score>
+    </record>
+    <record>
+        <id>2</id>
+        <name>Avinash</name>
+        <score>90</score>
+    </record>
+    <record>
+        <id>3</id>
+        <name>Vamsi</name>
+        <score>88</score>
+    </record>
+</data>

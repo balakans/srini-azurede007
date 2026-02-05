@@ -1,0 +1,90 @@
+2025-08-21 07:55:25,124 - [INFO] - Database connection established
+2025-08-21 07:55:25,374 - [INFO] - Inserted expense: Travel to hometown, 2000, 2025-08-20, category=1
+2025-08-21 08:00:15,422 - [INFO] - Database connection established
+2025-08-21 08:00:15,604 - [INFO] - Fetched 1 expenses
+2025-08-21 08:03:20,280 - [INFO] - Database connection established
+2025-08-21 08:03:20,356 - [INFO] - Deleted expense ID=1
+2025-08-21 08:05:20,065 - [INFO] - Database connection established
+2025-08-21 08:05:20,139 - [WARNING] - No expense found with ID=1
+2025-08-21 08:05:20,263 - [INFO] - Database connection established
+2025-08-21 08:05:20,316 - [INFO] - Fetched 5 categories
+2025-08-21 08:12:31,061 - [INFO] - Fetching all expenses
+2025-08-21 08:12:31,196 - [INFO] - Database connection established
+2025-08-21 08:12:31,244 - [INFO] - Fetched 0 expenses
+2025-08-21 08:16:23,779 - [INFO] - Adding expense: description='Order food in zomoto' amount=2500.0 date='2025-08-21' category_id=1
+2025-08-21 08:16:23,916 - [INFO] - Database connection established
+2025-08-21 08:16:23,992 - [INFO] - Inserted expense: Order food in zomoto, 2500.0, 2025-08-21, category=1
+2025-08-21 08:16:49,290 - [INFO] - Fetching all expenses
+2025-08-21 08:16:49,422 - [INFO] - Database connection established
+2025-08-21 08:16:49,480 - [INFO] - Fetched 1 expenses
+2025-08-21 08:23:12,849 - [INFO] - Deleting expense with ID: 2
+2025-08-21 08:23:12,980 - [INFO] - Database connection established
+2025-08-21 08:23:13,055 - [INFO] - Deleted expense ID=2
+2025-08-21 08:23:49,290 - [INFO] - Fetching all categories
+2025-08-21 08:23:49,418 - [INFO] - Database connection established
+2025-08-21 08:23:49,471 - [INFO] - Fetched 5 categories
+2025-08-21 08:31:37,413 - [INFO] - Adding expense: description='Dining in resturant' amount=1250.0 date='2025-08-21' category_id=1
+2025-08-21 08:31:37,542 - [INFO] - Database connection established
+2025-08-21 08:31:37,622 - [INFO] - Inserted expense: Dining in resturant, 1250.0, 2025-08-21, category=1
+2025-08-21 08:31:37,624 - [INFO] - Added expense: {'description': 'Dining in resturant', 'amount': 1250.0, 'date': '2025-08-21', 'category_id': 1}
+2025-08-21 08:31:49,443 - [INFO] - User exited the program
+2025-08-21 08:36:17,620 - [INFO] - Fetching all expenses
+2025-08-21 08:36:17,751 - [INFO] - Database connection established
+2025-08-21 08:36:17,803 - [INFO] - Fetched 1 expenses
+2025-08-21 08:36:17,805 - [INFO] - Fetched 1 expenses
+2025-08-21 08:37:04,027 - [INFO] - Adding expense: description='Vacation travel to ooty' amount=5600.0 date='2025-08-20' category_id=2
+2025-08-21 08:37:04,156 - [INFO] - Database connection established
+2025-08-21 08:37:04,232 - [INFO] - Inserted expense: Vacation travel to ooty, 5600.0, 2025-08-20, category=2
+2025-08-21 08:37:04,234 - [INFO] - Added expense: {'description': 'Vacation travel to ooty', 'amount': 5600.0, 'date': '2025-08-20', 'category_id': 2}
+2025-08-21 08:37:10,437 - [INFO] - Fetching all expenses
+2025-08-21 08:37:10,560 - [INFO] - Database connection established
+2025-08-21 08:37:10,613 - [INFO] - Fetched 2 expenses
+2025-08-21 08:37:10,615 - [INFO] - Fetched 2 expenses
+2025-08-21 08:38:01,654 - [INFO] - Adding expense: description='Groceries' amount=4500.0 date='2025-08-20' category_id=3
+2025-08-21 08:38:01,783 - [INFO] - Database connection established
+2025-08-21 08:38:01,862 - [INFO] - Inserted expense: Groceries, 4500.0, 2025-08-20, category=3
+2025-08-21 08:38:01,864 - [INFO] - Added expense: {'description': 'Groceries', 'amount': 4500.0, 'date': '2025-08-20', 'category_id': 3}
+2025-08-21 08:38:05,145 - [INFO] - Fetching all expenses
+2025-08-21 08:38:05,272 - [INFO] - Database connection established
+2025-08-21 08:38:05,324 - [INFO] - Fetched 3 expenses
+2025-08-21 08:38:05,327 - [INFO] - Fetched 3 expenses
+2025-08-21 08:38:34,558 - [INFO] - User exited the program
+2025-08-21 08:40:08,066 - [INFO] - Fetching all expenses
+2025-08-21 08:40:08,196 - [INFO] - Database connection established
+2025-08-21 08:40:08,255 - [INFO] - Fetched 3 expenses
+2025-08-21 08:40:08,257 - [INFO] - Fetched 3 expenses
+2025-08-21 08:40:33,539 - [INFO] - Deleting expense with ID: 5
+2025-08-21 08:40:33,668 - [INFO] - Database connection established
+2025-08-21 08:40:33,745 - [INFO] - Deleted expense ID=5
+2025-08-21 08:40:33,747 - [INFO] - Deleted expense ID: 5
+2025-08-21 08:40:39,757 - [INFO] - Fetching all expenses
+2025-08-21 08:40:39,883 - [INFO] - Database connection established
+2025-08-21 08:40:39,934 - [INFO] - Fetched 2 expenses
+2025-08-21 08:40:39,935 - [INFO] - Fetched 2 expenses
+2025-08-21 08:41:01,912 - [INFO] - User exited the program
+2025-08-21 08:42:36,914 - [INFO] - Fetching all expenses
+2025-08-21 08:42:37,044 - [INFO] - Database connection established
+2025-08-21 08:42:37,098 - [INFO] - Fetched 2 expenses
+2025-08-21 08:42:37,099 - [INFO] - Fetched 2 expenses
+2025-08-21 08:42:44,039 - [INFO] - Fetching all categories
+2025-08-21 08:42:44,163 - [INFO] - Database connection established
+2025-08-21 08:42:44,213 - [INFO] - Fetched 5 categories
+2025-08-21 08:42:44,214 - [INFO] - Fetched 5 categories
+2025-08-21 08:43:19,832 - [INFO] - Adding expense: description='House Rent' amount=15000.0 date='2025-08-10' category_id=3
+2025-08-21 08:43:19,962 - [INFO] - Database connection established
+2025-08-21 08:43:20,046 - [INFO] - Inserted expense: House Rent, 15000.0, 2025-08-10, category=3
+2025-08-21 08:43:20,048 - [INFO] - Added expense: {'description': 'House Rent', 'amount': 15000.0, 'date': '2025-08-10', 'category_id': 3}
+2025-08-21 08:43:24,219 - [INFO] - Fetching all expenses
+2025-08-21 08:43:24,339 - [INFO] - Database connection established
+2025-08-21 08:43:24,386 - [INFO] - Fetched 3 expenses
+2025-08-21 08:43:24,388 - [INFO] - Fetched 3 expenses
+2025-08-21 08:43:38,751 - [INFO] - User exited the program
+2025-08-21 08:44:53,370 - [INFO] - Fetching all expenses
+2025-08-21 08:44:53,501 - [INFO] - Database connection established
+2025-08-21 08:44:53,567 - [INFO] - Fetched 3 expenses
+2025-08-21 08:44:53,570 - [INFO] - Fetched 3 expenses
+2025-08-21 08:45:05,492 - [INFO] - Fetching all categories
+2025-08-21 08:45:05,622 - [INFO] - Database connection established
+2025-08-21 08:45:05,675 - [INFO] - Fetched 5 categories
+2025-08-21 08:45:05,679 - [INFO] - Fetched 5 categories
+2025-08-21 08:45:08,115 - [INFO] - User exited the program

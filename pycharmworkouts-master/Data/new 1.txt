@@ -1,0 +1,44 @@
+git config --global user.name "srinikg"
+git config --global user.email "srinikg@gmail.com"
+
+#create repo
+git init
+
+
+#add all the changes/new files into staging area
+git add .
+
+#save the changes in the staging area to the git repo and created a commit id
+git commit -m "First Commit"
+
+#show the status of the uncommited/staging files info
+git status
+
+#to see all the commits sofar
+git log
+git log --oneline
+
+#list branch
+git branch 
+
+#create branch
+git branch dev 
+
+#switch branch
+git checkout dev 
+
+
+git remote add origin https://github.com/azurede007/expensemanager.git
+git push -u origin master
+
+git pull -u origin master
+
+
+
+git remote remove origin
+git push -u origin branch_name # push branch to remote
+git branch -a #list out local and remote branch
+
+git log --oneline
+git revert --no-commit abc123..HEAD
+git commit -m "Revert to commit abc123"
