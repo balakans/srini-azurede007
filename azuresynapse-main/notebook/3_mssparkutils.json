@@ -1,0 +1,155 @@
+{
+	"name": "3_mssparkutils",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "inceptezspark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "06f374d4-c514-43e3-8f05-3b86a11450d7"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/660da862-ec29-4eb2-a8b7-c87550e4277d/resourceGroups/inceptez-synapse-rg/providers/Microsoft.Synapse/workspaces/inceptezsynapse-ws/bigDataPools/inceptezspark",
+				"name": "inceptezspark",
+				"type": "Spark",
+				"endpoint": "https://inceptezsynapse-ws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/inceptezspark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.5",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"### mssparkutils - File System(mssparkutils.fs)"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"#List files\n",
+					"from notebookutils import mssparkutils\n",
+					"lst = mssparkutils.fs.ls(\"abfss://raw@batch25synapseadls.dfs.core.windows.net\")"
+				],
+				"execution_count": 13
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"#View file content\n",
+					"mssparkutils.fs.head(\"abfss://raw@batch25synapseadls.dfs.core.windows.net/Unemployment.csv\")"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"#Copy file\n",
+					"mssparkutils.fs.cp(\"abfss://raw@batch25synapseadls.dfs.core.windows.net/orders.json\", \"abfss://raw@batch25synapseadls.dfs.core.windows.net/retaildata/\")"
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"#Delete file\n",
+					"mssparkutils.fs.rm(\"abfss://raw@batch25synapseadls.dfs.core.windows.net/retaildata/orders.json\")"
+				],
+				"execution_count": 16
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"### mssparkutils - Notebook(mssparkutils.notebook)"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"#Run another notebook\n",
+					"mssparkutils.notebook.run(\"4_childnb\",60)\n",
+					""
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"mssparkutils.notebook.run(\"4_childnb\",60, {\"p1\":\"100\",\"p2\":\"250\"})"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"### Mounting the file path"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from notebookutils import mssparkutils \n",
+					"\n",
+					"#Unmount\n",
+					"mssparkutils.fs.unmount(\"/bankmnt\")\n",
+					"# Mount the container\n",
+					"mssparkutils.fs.mount(\"abfss://bankdata@inceptezadlsbankdata.dfs.core.windows.net\", \"/bankmnt\")\n",
+					"job_id = mssparkutils.env.getJobId()\n",
+					"df = spark.read.format('csv').option(\"header\",True).load('synfs:/notebook/'+ job_id + '/bankmnt/')\n",
+					"df.show()"
+				]
+			}
+		]
+	}
+}

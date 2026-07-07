@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "SELECT * FROM [hranalytics_db].[dbo].fact_employee_metrics;\n\nSELECT \n    'Attrition Rate' as metrics_name, \n    abs(COUNT(CASE WHEN attrition_flag = 1 THEN 1 END) * 100.0 / COUNT(*)) AS metrics_value\nFROM hranalytics_db.dbo.fact_employee_metrics;\n\nSELECT exit_reason as metric_name, COUNT(*) AS metric_value\nFROM hranalytics_db.dbo.silver_exit\nGROUP BY exit_reason\nORDER BY 1 DESC;\n\n\nSELECT AVG(survey_score) AS avg_engagement\nFROM hranalytics_db.dbo.fact_employee_metrics;\n\nSELECT emp_sk\nFROM hranalytics_db.dbo.fact_employee_metrics\nWHERE rating < 2 AND survey_score < 5;\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "hranalytics_db",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

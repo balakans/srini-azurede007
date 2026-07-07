@@ -1,0 +1,175 @@
+{
+	"name": "pl_29_variable",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Set Target FileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_blob_retaildata",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourcefilename": {
+								"value": "@variables('v_sourcefilename')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_adls_archive",
+						"type": "DatasetReference",
+						"parameters": {
+							"targetfilename": {
+								"value": "@variables('v_targetfilename')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Read from Config File",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "ds_blob_json_config",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Set Source File Name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Read from Config File",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_sourcefilename",
+					"value": {
+						"value": "@activity('Read from Config File').output.firstRow.sorucefilename",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set Target FileName",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set Source File Name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_targetfilename",
+					"value": {
+						"value": "@concat(concat(formatDateTime(utcNow(),'yyyy_MM_dd'), '_'),activity('Read from Config File').output.firstRow.targetfilename)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"v_sourcefilename": {
+				"type": "String",
+				"defaultValue": "custs"
+			},
+			"v_targetfilename": {
+				"type": "String",
+				"defaultValue": "customerdata.csv"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-03-04T03:37:50Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,1401 @@
+id,issue_category,issue_description,resolution,content,created_date
+ISP0001,WiFi Issue,Customer reported wifi issue affecting internet service ticket 1,"Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.","Issue Category: WiFi Issue
+
+Issue Description:
+Customer reported wifi issue affecting internet service ticket 1
+
+Resolution:
+Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-01
+ISP0002,Fiber Issue,Customer reported fiber issue affecting internet service ticket 2,"Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Fiber Issue
+
+Issue Description:
+Customer reported fiber issue affecting internet service ticket 2
+
+Resolution:
+Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-02
+ISP0003,DNS Issue,Customer reported dns issue affecting internet service ticket 3,"Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.","Issue Category: DNS Issue
+
+Issue Description:
+Customer reported dns issue affecting internet service ticket 3
+
+Resolution:
+Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-03
+ISP0004,Authentication,Customer reported authentication affecting internet service ticket 4,"Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.","Issue Category: Authentication
+
+Issue Description:
+Customer reported authentication affecting internet service ticket 4
+
+Resolution:
+Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-04
+ISP0005,Speed Issue,Customer reported speed issue affecting internet service ticket 5,"Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Speed Issue
+
+Issue Description:
+Customer reported speed issue affecting internet service ticket 5
+
+Resolution:
+Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-05
+ISP0006,Network Outage,Customer reported network outage affecting internet service ticket 6,"Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.","Issue Category: Network Outage
+
+Issue Description:
+Customer reported network outage affecting internet service ticket 6
+
+Resolution:
+Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-06
+ISP0007,Billing Issue,Customer reported billing issue affecting internet service ticket 7,"Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Billing Issue
+
+Issue Description:
+Customer reported billing issue affecting internet service ticket 7
+
+Resolution:
+Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-07
+ISP0008,Provisioning,Customer reported provisioning affecting internet service ticket 8,"Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.","Issue Category: Provisioning
+
+Issue Description:
+Customer reported provisioning affecting internet service ticket 8
+
+Resolution:
+Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-08
+ISP0009,Device Issue,Customer reported device issue affecting internet service ticket 9,"Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Device Issue
+
+Issue Description:
+Customer reported device issue affecting internet service ticket 9
+
+Resolution:
+Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-09
+ISP0010,Routing Issue,Customer reported routing issue affecting internet service ticket 10,"Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Routing Issue
+
+Issue Description:
+Customer reported routing issue affecting internet service ticket 10
+
+Resolution:
+Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-10
+ISP0011,WiFi Issue,Customer reported wifi issue affecting internet service ticket 11,"Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.","Issue Category: WiFi Issue
+
+Issue Description:
+Customer reported wifi issue affecting internet service ticket 11
+
+Resolution:
+Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-11
+ISP0012,Fiber Issue,Customer reported fiber issue affecting internet service ticket 12,"Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Fiber Issue
+
+Issue Description:
+Customer reported fiber issue affecting internet service ticket 12
+
+Resolution:
+Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-12
+ISP0013,DNS Issue,Customer reported dns issue affecting internet service ticket 13,"Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.","Issue Category: DNS Issue
+
+Issue Description:
+Customer reported dns issue affecting internet service ticket 13
+
+Resolution:
+Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-13
+ISP0014,Authentication,Customer reported authentication affecting internet service ticket 14,"Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.","Issue Category: Authentication
+
+Issue Description:
+Customer reported authentication affecting internet service ticket 14
+
+Resolution:
+Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-14
+ISP0015,Speed Issue,Customer reported speed issue affecting internet service ticket 15,"Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Speed Issue
+
+Issue Description:
+Customer reported speed issue affecting internet service ticket 15
+
+Resolution:
+Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-15
+ISP0016,Network Outage,Customer reported network outage affecting internet service ticket 16,"Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.","Issue Category: Network Outage
+
+Issue Description:
+Customer reported network outage affecting internet service ticket 16
+
+Resolution:
+Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-16
+ISP0017,Billing Issue,Customer reported billing issue affecting internet service ticket 17,"Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Billing Issue
+
+Issue Description:
+Customer reported billing issue affecting internet service ticket 17
+
+Resolution:
+Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-17
+ISP0018,Provisioning,Customer reported provisioning affecting internet service ticket 18,"Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.","Issue Category: Provisioning
+
+Issue Description:
+Customer reported provisioning affecting internet service ticket 18
+
+Resolution:
+Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-18
+ISP0019,Device Issue,Customer reported device issue affecting internet service ticket 19,"Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Device Issue
+
+Issue Description:
+Customer reported device issue affecting internet service ticket 19
+
+Resolution:
+Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-19
+ISP0020,Routing Issue,Customer reported routing issue affecting internet service ticket 20,"Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Routing Issue
+
+Issue Description:
+Customer reported routing issue affecting internet service ticket 20
+
+Resolution:
+Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-20
+ISP0021,WiFi Issue,Customer reported wifi issue affecting internet service ticket 21,"Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.","Issue Category: WiFi Issue
+
+Issue Description:
+Customer reported wifi issue affecting internet service ticket 21
+
+Resolution:
+Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-21
+ISP0022,Fiber Issue,Customer reported fiber issue affecting internet service ticket 22,"Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Fiber Issue
+
+Issue Description:
+Customer reported fiber issue affecting internet service ticket 22
+
+Resolution:
+Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-22
+ISP0023,DNS Issue,Customer reported dns issue affecting internet service ticket 23,"Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.","Issue Category: DNS Issue
+
+Issue Description:
+Customer reported dns issue affecting internet service ticket 23
+
+Resolution:
+Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-23
+ISP0024,Authentication,Customer reported authentication affecting internet service ticket 24,"Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.","Issue Category: Authentication
+
+Issue Description:
+Customer reported authentication affecting internet service ticket 24
+
+Resolution:
+Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-24
+ISP0025,Speed Issue,Customer reported speed issue affecting internet service ticket 25,"Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Speed Issue
+
+Issue Description:
+Customer reported speed issue affecting internet service ticket 25
+
+Resolution:
+Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-25
+ISP0026,Network Outage,Customer reported network outage affecting internet service ticket 26,"Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.","Issue Category: Network Outage
+
+Issue Description:
+Customer reported network outage affecting internet service ticket 26
+
+Resolution:
+Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-26
+ISP0027,Billing Issue,Customer reported billing issue affecting internet service ticket 27,"Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Billing Issue
+
+Issue Description:
+Customer reported billing issue affecting internet service ticket 27
+
+Resolution:
+Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-27
+ISP0028,Provisioning,Customer reported provisioning affecting internet service ticket 28,"Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.","Issue Category: Provisioning
+
+Issue Description:
+Customer reported provisioning affecting internet service ticket 28
+
+Resolution:
+Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-28
+ISP0029,Device Issue,Customer reported device issue affecting internet service ticket 29,"Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Device Issue
+
+Issue Description:
+Customer reported device issue affecting internet service ticket 29
+
+Resolution:
+Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-29
+ISP0030,Routing Issue,Customer reported routing issue affecting internet service ticket 30,"Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Routing Issue
+
+Issue Description:
+Customer reported routing issue affecting internet service ticket 30
+
+Resolution:
+Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-30
+ISP0031,WiFi Issue,Customer reported wifi issue affecting internet service ticket 31,"Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.","Issue Category: WiFi Issue
+
+Issue Description:
+Customer reported wifi issue affecting internet service ticket 31
+
+Resolution:
+Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-01-31
+ISP0032,Fiber Issue,Customer reported fiber issue affecting internet service ticket 32,"Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Fiber Issue
+
+Issue Description:
+Customer reported fiber issue affecting internet service ticket 32
+
+Resolution:
+Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-01
+ISP0033,DNS Issue,Customer reported dns issue affecting internet service ticket 33,"Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.","Issue Category: DNS Issue
+
+Issue Description:
+Customer reported dns issue affecting internet service ticket 33
+
+Resolution:
+Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-02
+ISP0034,Authentication,Customer reported authentication affecting internet service ticket 34,"Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.","Issue Category: Authentication
+
+Issue Description:
+Customer reported authentication affecting internet service ticket 34
+
+Resolution:
+Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-03
+ISP0035,Speed Issue,Customer reported speed issue affecting internet service ticket 35,"Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Speed Issue
+
+Issue Description:
+Customer reported speed issue affecting internet service ticket 35
+
+Resolution:
+Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-04
+ISP0036,Network Outage,Customer reported network outage affecting internet service ticket 36,"Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.","Issue Category: Network Outage
+
+Issue Description:
+Customer reported network outage affecting internet service ticket 36
+
+Resolution:
+Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-05
+ISP0037,Billing Issue,Customer reported billing issue affecting internet service ticket 37,"Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Billing Issue
+
+Issue Description:
+Customer reported billing issue affecting internet service ticket 37
+
+Resolution:
+Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-06
+ISP0038,Provisioning,Customer reported provisioning affecting internet service ticket 38,"Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.","Issue Category: Provisioning
+
+Issue Description:
+Customer reported provisioning affecting internet service ticket 38
+
+Resolution:
+Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-07
+ISP0039,Device Issue,Customer reported device issue affecting internet service ticket 39,"Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Device Issue
+
+Issue Description:
+Customer reported device issue affecting internet service ticket 39
+
+Resolution:
+Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-08
+ISP0040,Routing Issue,Customer reported routing issue affecting internet service ticket 40,"Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Routing Issue
+
+Issue Description:
+Customer reported routing issue affecting internet service ticket 40
+
+Resolution:
+Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-09
+ISP0041,WiFi Issue,Customer reported wifi issue affecting internet service ticket 41,"Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.","Issue Category: WiFi Issue
+
+Issue Description:
+Customer reported wifi issue affecting internet service ticket 41
+
+Resolution:
+Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-10
+ISP0042,Fiber Issue,Customer reported fiber issue affecting internet service ticket 42,"Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Fiber Issue
+
+Issue Description:
+Customer reported fiber issue affecting internet service ticket 42
+
+Resolution:
+Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-11
+ISP0043,DNS Issue,Customer reported dns issue affecting internet service ticket 43,"Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.","Issue Category: DNS Issue
+
+Issue Description:
+Customer reported dns issue affecting internet service ticket 43
+
+Resolution:
+Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-12
+ISP0044,Authentication,Customer reported authentication affecting internet service ticket 44,"Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.","Issue Category: Authentication
+
+Issue Description:
+Customer reported authentication affecting internet service ticket 44
+
+Resolution:
+Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-13
+ISP0045,Speed Issue,Customer reported speed issue affecting internet service ticket 45,"Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Speed Issue
+
+Issue Description:
+Customer reported speed issue affecting internet service ticket 45
+
+Resolution:
+Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-14
+ISP0046,Network Outage,Customer reported network outage affecting internet service ticket 46,"Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.","Issue Category: Network Outage
+
+Issue Description:
+Customer reported network outage affecting internet service ticket 46
+
+Resolution:
+Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-15
+ISP0047,Billing Issue,Customer reported billing issue affecting internet service ticket 47,"Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Billing Issue
+
+Issue Description:
+Customer reported billing issue affecting internet service ticket 47
+
+Resolution:
+Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-16
+ISP0048,Provisioning,Customer reported provisioning affecting internet service ticket 48,"Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.","Issue Category: Provisioning
+
+Issue Description:
+Customer reported provisioning affecting internet service ticket 48
+
+Resolution:
+Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-17
+ISP0049,Device Issue,Customer reported device issue affecting internet service ticket 49,"Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Device Issue
+
+Issue Description:
+Customer reported device issue affecting internet service ticket 49
+
+Resolution:
+Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-18
+ISP0050,Routing Issue,Customer reported routing issue affecting internet service ticket 50,"Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Routing Issue
+
+Issue Description:
+Customer reported routing issue affecting internet service ticket 50
+
+Resolution:
+Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-19
+ISP0051,WiFi Issue,Customer reported wifi issue affecting internet service ticket 51,"Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.","Issue Category: WiFi Issue
+
+Issue Description:
+Customer reported wifi issue affecting internet service ticket 51
+
+Resolution:
+Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-20
+ISP0052,Fiber Issue,Customer reported fiber issue affecting internet service ticket 52,"Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Fiber Issue
+
+Issue Description:
+Customer reported fiber issue affecting internet service ticket 52
+
+Resolution:
+Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-21
+ISP0053,DNS Issue,Customer reported dns issue affecting internet service ticket 53,"Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.","Issue Category: DNS Issue
+
+Issue Description:
+Customer reported dns issue affecting internet service ticket 53
+
+Resolution:
+Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-22
+ISP0054,Authentication,Customer reported authentication affecting internet service ticket 54,"Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.","Issue Category: Authentication
+
+Issue Description:
+Customer reported authentication affecting internet service ticket 54
+
+Resolution:
+Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-23
+ISP0055,Speed Issue,Customer reported speed issue affecting internet service ticket 55,"Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Speed Issue
+
+Issue Description:
+Customer reported speed issue affecting internet service ticket 55
+
+Resolution:
+Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-24
+ISP0056,Network Outage,Customer reported network outage affecting internet service ticket 56,"Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.","Issue Category: Network Outage
+
+Issue Description:
+Customer reported network outage affecting internet service ticket 56
+
+Resolution:
+Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-25
+ISP0057,Billing Issue,Customer reported billing issue affecting internet service ticket 57,"Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Billing Issue
+
+Issue Description:
+Customer reported billing issue affecting internet service ticket 57
+
+Resolution:
+Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-26
+ISP0058,Provisioning,Customer reported provisioning affecting internet service ticket 58,"Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.","Issue Category: Provisioning
+
+Issue Description:
+Customer reported provisioning affecting internet service ticket 58
+
+Resolution:
+Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-27
+ISP0059,Device Issue,Customer reported device issue affecting internet service ticket 59,"Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Device Issue
+
+Issue Description:
+Customer reported device issue affecting internet service ticket 59
+
+Resolution:
+Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-02-28
+ISP0060,Routing Issue,Customer reported routing issue affecting internet service ticket 60,"Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Routing Issue
+
+Issue Description:
+Customer reported routing issue affecting internet service ticket 60
+
+Resolution:
+Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-01
+ISP0061,WiFi Issue,Customer reported wifi issue affecting internet service ticket 61,"Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.","Issue Category: WiFi Issue
+
+Issue Description:
+Customer reported wifi issue affecting internet service ticket 61
+
+Resolution:
+Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-02
+ISP0062,Fiber Issue,Customer reported fiber issue affecting internet service ticket 62,"Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Fiber Issue
+
+Issue Description:
+Customer reported fiber issue affecting internet service ticket 62
+
+Resolution:
+Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-03
+ISP0063,DNS Issue,Customer reported dns issue affecting internet service ticket 63,"Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.","Issue Category: DNS Issue
+
+Issue Description:
+Customer reported dns issue affecting internet service ticket 63
+
+Resolution:
+Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-04
+ISP0064,Authentication,Customer reported authentication affecting internet service ticket 64,"Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.","Issue Category: Authentication
+
+Issue Description:
+Customer reported authentication affecting internet service ticket 64
+
+Resolution:
+Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-05
+ISP0065,Speed Issue,Customer reported speed issue affecting internet service ticket 65,"Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Speed Issue
+
+Issue Description:
+Customer reported speed issue affecting internet service ticket 65
+
+Resolution:
+Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-06
+ISP0066,Network Outage,Customer reported network outage affecting internet service ticket 66,"Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.","Issue Category: Network Outage
+
+Issue Description:
+Customer reported network outage affecting internet service ticket 66
+
+Resolution:
+Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-07
+ISP0067,Billing Issue,Customer reported billing issue affecting internet service ticket 67,"Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Billing Issue
+
+Issue Description:
+Customer reported billing issue affecting internet service ticket 67
+
+Resolution:
+Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-08
+ISP0068,Provisioning,Customer reported provisioning affecting internet service ticket 68,"Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.","Issue Category: Provisioning
+
+Issue Description:
+Customer reported provisioning affecting internet service ticket 68
+
+Resolution:
+Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-09
+ISP0069,Device Issue,Customer reported device issue affecting internet service ticket 69,"Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Device Issue
+
+Issue Description:
+Customer reported device issue affecting internet service ticket 69
+
+Resolution:
+Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-10
+ISP0070,Routing Issue,Customer reported routing issue affecting internet service ticket 70,"Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Routing Issue
+
+Issue Description:
+Customer reported routing issue affecting internet service ticket 70
+
+Resolution:
+Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-11
+ISP0071,WiFi Issue,Customer reported wifi issue affecting internet service ticket 71,"Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.","Issue Category: WiFi Issue
+
+Issue Description:
+Customer reported wifi issue affecting internet service ticket 71
+
+Resolution:
+Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-12
+ISP0072,Fiber Issue,Customer reported fiber issue affecting internet service ticket 72,"Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Fiber Issue
+
+Issue Description:
+Customer reported fiber issue affecting internet service ticket 72
+
+Resolution:
+Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-13
+ISP0073,DNS Issue,Customer reported dns issue affecting internet service ticket 73,"Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.","Issue Category: DNS Issue
+
+Issue Description:
+Customer reported dns issue affecting internet service ticket 73
+
+Resolution:
+Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-14
+ISP0074,Authentication,Customer reported authentication affecting internet service ticket 74,"Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.","Issue Category: Authentication
+
+Issue Description:
+Customer reported authentication affecting internet service ticket 74
+
+Resolution:
+Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-15
+ISP0075,Speed Issue,Customer reported speed issue affecting internet service ticket 75,"Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Speed Issue
+
+Issue Description:
+Customer reported speed issue affecting internet service ticket 75
+
+Resolution:
+Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-16
+ISP0076,Network Outage,Customer reported network outage affecting internet service ticket 76,"Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.","Issue Category: Network Outage
+
+Issue Description:
+Customer reported network outage affecting internet service ticket 76
+
+Resolution:
+Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-17
+ISP0077,Billing Issue,Customer reported billing issue affecting internet service ticket 77,"Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Billing Issue
+
+Issue Description:
+Customer reported billing issue affecting internet service ticket 77
+
+Resolution:
+Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-18
+ISP0078,Provisioning,Customer reported provisioning affecting internet service ticket 78,"Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.","Issue Category: Provisioning
+
+Issue Description:
+Customer reported provisioning affecting internet service ticket 78
+
+Resolution:
+Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-19
+ISP0079,Device Issue,Customer reported device issue affecting internet service ticket 79,"Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Device Issue
+
+Issue Description:
+Customer reported device issue affecting internet service ticket 79
+
+Resolution:
+Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-20
+ISP0080,Routing Issue,Customer reported routing issue affecting internet service ticket 80,"Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Routing Issue
+
+Issue Description:
+Customer reported routing issue affecting internet service ticket 80
+
+Resolution:
+Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-21
+ISP0081,WiFi Issue,Customer reported wifi issue affecting internet service ticket 81,"Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.","Issue Category: WiFi Issue
+
+Issue Description:
+Customer reported wifi issue affecting internet service ticket 81
+
+Resolution:
+Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-22
+ISP0082,Fiber Issue,Customer reported fiber issue affecting internet service ticket 82,"Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Fiber Issue
+
+Issue Description:
+Customer reported fiber issue affecting internet service ticket 82
+
+Resolution:
+Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-23
+ISP0083,DNS Issue,Customer reported dns issue affecting internet service ticket 83,"Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.","Issue Category: DNS Issue
+
+Issue Description:
+Customer reported dns issue affecting internet service ticket 83
+
+Resolution:
+Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-24
+ISP0084,Authentication,Customer reported authentication affecting internet service ticket 84,"Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.","Issue Category: Authentication
+
+Issue Description:
+Customer reported authentication affecting internet service ticket 84
+
+Resolution:
+Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-25
+ISP0085,Speed Issue,Customer reported speed issue affecting internet service ticket 85,"Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Speed Issue
+
+Issue Description:
+Customer reported speed issue affecting internet service ticket 85
+
+Resolution:
+Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-26
+ISP0086,Network Outage,Customer reported network outage affecting internet service ticket 86,"Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.","Issue Category: Network Outage
+
+Issue Description:
+Customer reported network outage affecting internet service ticket 86
+
+Resolution:
+Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-27
+ISP0087,Billing Issue,Customer reported billing issue affecting internet service ticket 87,"Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Billing Issue
+
+Issue Description:
+Customer reported billing issue affecting internet service ticket 87
+
+Resolution:
+Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-28
+ISP0088,Provisioning,Customer reported provisioning affecting internet service ticket 88,"Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.","Issue Category: Provisioning
+
+Issue Description:
+Customer reported provisioning affecting internet service ticket 88
+
+Resolution:
+Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-29
+ISP0089,Device Issue,Customer reported device issue affecting internet service ticket 89,"Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Device Issue
+
+Issue Description:
+Customer reported device issue affecting internet service ticket 89
+
+Resolution:
+Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-30
+ISP0090,Routing Issue,Customer reported routing issue affecting internet service ticket 90,"Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Routing Issue
+
+Issue Description:
+Customer reported routing issue affecting internet service ticket 90
+
+Resolution:
+Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-03-31
+ISP0091,WiFi Issue,Customer reported wifi issue affecting internet service ticket 91,"Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.","Issue Category: WiFi Issue
+
+Issue Description:
+Customer reported wifi issue affecting internet service ticket 91
+
+Resolution:
+Standard resolution applied for wifi issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-04-01
+ISP0092,Fiber Issue,Customer reported fiber issue affecting internet service ticket 92,"Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Fiber Issue
+
+Issue Description:
+Customer reported fiber issue affecting internet service ticket 92
+
+Resolution:
+Standard resolution applied for fiber issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-04-02
+ISP0093,DNS Issue,Customer reported dns issue affecting internet service ticket 93,"Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.","Issue Category: DNS Issue
+
+Issue Description:
+Customer reported dns issue affecting internet service ticket 93
+
+Resolution:
+Standard resolution applied for dns issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-04-03
+ISP0094,Authentication,Customer reported authentication affecting internet service ticket 94,"Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.","Issue Category: Authentication
+
+Issue Description:
+Customer reported authentication affecting internet service ticket 94
+
+Resolution:
+Standard resolution applied for authentication including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-04-04
+ISP0095,Speed Issue,Customer reported speed issue affecting internet service ticket 95,"Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Speed Issue
+
+Issue Description:
+Customer reported speed issue affecting internet service ticket 95
+
+Resolution:
+Standard resolution applied for speed issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-04-05
+ISP0096,Network Outage,Customer reported network outage affecting internet service ticket 96,"Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.","Issue Category: Network Outage
+
+Issue Description:
+Customer reported network outage affecting internet service ticket 96
+
+Resolution:
+Standard resolution applied for network outage including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-04-06
+ISP0097,Billing Issue,Customer reported billing issue affecting internet service ticket 97,"Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Billing Issue
+
+Issue Description:
+Customer reported billing issue affecting internet service ticket 97
+
+Resolution:
+Standard resolution applied for billing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-04-07
+ISP0098,Provisioning,Customer reported provisioning affecting internet service ticket 98,"Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.","Issue Category: Provisioning
+
+Issue Description:
+Customer reported provisioning affecting internet service ticket 98
+
+Resolution:
+Standard resolution applied for provisioning including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-04-08
+ISP0099,Device Issue,Customer reported device issue affecting internet service ticket 99,"Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Device Issue
+
+Issue Description:
+Customer reported device issue affecting internet service ticket 99
+
+Resolution:
+Standard resolution applied for device issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-04-09
+ISP0100,Routing Issue,Customer reported routing issue affecting internet service ticket 100,"Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.","Issue Category: Routing Issue
+
+Issue Description:
+Customer reported routing issue affecting internet service ticket 100
+
+Resolution:
+Standard resolution applied for routing issue including troubleshooting, configuration validation, and service restoration.
+
+Troubleshooting Steps:
+1. Verify service status.
+2. Check customer equipment.
+3. Validate network configuration.
+4. Apply corrective action.
+5. Confirm service restoration.",2026-04-10

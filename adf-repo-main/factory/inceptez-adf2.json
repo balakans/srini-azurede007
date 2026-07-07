@@ -1,0 +1,9 @@
+{
+	"name": "inceptez-adf2",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "cebeb4b3-9302-44e5-aa0b-0a107fb5792b",
+		"tenantId": "077e6d94-e92e-4e9a-9c26-f372c37dc598"
+	}
+}

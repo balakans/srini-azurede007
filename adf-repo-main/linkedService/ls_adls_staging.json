@@ -1,0 +1,10 @@
+{
+	"name": "ls_adls_staging",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://dbstorageelykbtwwumdrq.dfs.core.windows.net/"
+		}
+	}
+}

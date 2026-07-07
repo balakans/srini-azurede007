@@ -1,0 +1,9 @@
+{
+	"name": "inceptez-wd25",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "581d85fc-b883-4d64-96a9-7e5487b23050",
+		"tenantId": "507995ad-8be6-41d7-ac4c-c8b75e7bd41c"
+	}
+}

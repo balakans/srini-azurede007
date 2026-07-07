@@ -1,0 +1,17 @@
+{
+	"name": "1_Create_database",
+	"properties": {
+		"content": {
+			"query": "\ncreate database testdb;\n\nselect * from sys.databases;\n\nuse inceptezdb;\n\n--to list the database names\nselect name from sys.databases;\n\nuse master;\ndrop database testdb;\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

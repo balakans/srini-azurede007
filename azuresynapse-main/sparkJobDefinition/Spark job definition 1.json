@@ -1,0 +1,35 @@
+{
+	"name": "Spark job definition 1",
+	"properties": {
+		"targetBigDataPool": {
+			"referenceName": "inceptezspark",
+			"type": "BigDataPoolReference"
+		},
+		"requiredSparkVersion": "3.5",
+		"language": "scala",
+		"scanFolder": false,
+		"jobProperties": {
+			"name": "Spark job definition 1",
+			"file": "abfss://raw@batch25synapseadls.dfs.core.windows.net/spark-workouts/Lab01-sparkbasics.py",
+			"className": "Lab01-sparkbasics.py",
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "1",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "a7b4be27-77c1-42bc-aae8-79a6a3c18f6d",
+				"spark.synapse.context.sjdname": "Spark job definition 1"
+			},
+			"args": [],
+			"jars": [],
+			"pyFiles": [
+				""
+			],
+			"files": [],
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2
+		}
+	}
+}

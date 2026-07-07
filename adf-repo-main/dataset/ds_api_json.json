@@ -1,0 +1,19 @@
+{
+	"name": "ds_api_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_http_api",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "forecast?latitude=19.07&longitude=72.87&current_weather=true"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

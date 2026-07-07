@@ -1,0 +1,16 @@
+{
+	"name": "ds_sql_hospital",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_hc",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "hospital_info"
+		}
+	}
+}

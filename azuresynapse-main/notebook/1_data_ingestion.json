@@ -1,0 +1,146 @@
+{
+	"name": "1_data_ingestion",
+	"properties": {
+		"folder": {
+			"name": "HR-Analytics"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "inceptezspark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "a51be77e-7f0c-4c51-b14f-091c93b92874"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/660da862-ec29-4eb2-a8b7-c87550e4277d/resourceGroups/inceptez-synapse-rg/providers/Microsoft.Synapse/workspaces/inceptezsynapse-ws/bigDataPools/inceptezspark",
+				"name": "inceptezspark",
+				"type": "Spark",
+				"endpoint": "https://inceptezsynapse-ws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/inceptezspark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.5",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"spark.sql(\"DROP DATABASE IF EXISTS hranalytics_db CASCADE\")"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"#Step 1: Create Database\n",
+					"\n",
+					"spark.sql(\"CREATE DATABASE IF NOT EXISTS hranalytics_db\")\n",
+					"\n",
+					"spark.sql(\"\"\"CREATE TABLE hranalytics_db.dim_employee (\n",
+					"   emp_id STRING,\n",
+					"   name STRING,\n",
+					"   dept STRING,\n",
+					"   role STRING,\n",
+					"   location STRING,\n",
+					"   hire_date DATE,\n",
+					"   salary DOUBLE,\n",
+					"   status STRING,\n",
+					"   start_date DATE,\n",
+					"   end_date DATE,\n",
+					"   is_current BOOLEAN\n",
+					")\"\"\")\n",
+					"\n",
+					"#Step 2: Define Path\n",
+					"base_path = \"abfss://raw@batch25synapseadls.dfs.core.windows.net/hr-rawsource/\"\n",
+					"\n",
+					"#Step 3: Read CSV Files\n",
+					"employee_df = spark.read.format(\"csv\") \\\n",
+					"    .option(\"header\", True) \\\n",
+					"    .option(\"inferSchema\", True) \\\n",
+					"    .load(base_path + \"employee.csv\")\n",
+					"\n",
+					"performance_df = spark.read.format(\"csv\") \\\n",
+					"    .option(\"header\", True) \\\n",
+					"    .option(\"inferSchema\", True) \\\n",
+					"    .load(base_path + \"performance.csv\")\n",
+					"\n",
+					"survey_df = spark.read.format(\"csv\") \\\n",
+					"    .option(\"header\", True) \\\n",
+					"    .option(\"inferSchema\", True) \\\n",
+					"    .load(base_path + \"survey.csv\")\n",
+					"\n",
+					"exit_df = spark.read.format(\"csv\") \\\n",
+					"    .option(\"header\", True) \\\n",
+					"    .option(\"inferSchema\", True) \\\n",
+					"    .load(base_path + \"exit.csv\")\n",
+					"\n",
+					"#Step 4: Add Bronze Metadata Columns\n",
+					"from pyspark.sql.functions import current_timestamp, lit\n",
+					"\n",
+					"def add_bronze_columns(df, source_name):\n",
+					"    return df.withColumn(\"ingestion_time\", current_timestamp()) \\\n",
+					"             .withColumn(\"source_file\", lit(source_name))\n",
+					"\n",
+					"employee_df = add_bronze_columns(employee_df, \"employee.csv\")\n",
+					"performance_df = add_bronze_columns(performance_df, \"performance.csv\")\n",
+					"survey_df = add_bronze_columns(survey_df, \"survey.csv\")\n",
+					"exit_df = add_bronze_columns(exit_df, \"exit.csv\")\n",
+					"\n",
+					"#Step 5: Write to Bronze Tables (Delta)\n",
+					"employee_df.write.format(\"delta\") \\\n",
+					"    .mode(\"overwrite\") \\\n",
+					"    .saveAsTable(\"hranalytics_db.bronze_employee\")\n",
+					"\n",
+					"performance_df.write.format(\"delta\") \\\n",
+					"    .mode(\"overwrite\") \\\n",
+					"    .saveAsTable(\"hranalytics_db.bronze_performance\")\n",
+					"\n",
+					"survey_df.write.format(\"delta\") \\\n",
+					"    .mode(\"overwrite\") \\\n",
+					"    .saveAsTable(\"hranalytics_db.bronze_survey\")\n",
+					"\n",
+					"exit_df.write.format(\"delta\") \\\n",
+					"    .mode(\"overwrite\") \\\n",
+					"    .saveAsTable(\"hranalytics_db.bronze_exit\")\n",
+					"\n",
+					"#Step 6: Validate\n",
+					"spark.sql(\"SELECT COUNT(*) FROM hranalytics_db.bronze_employee\").show()\n",
+					"spark.sql(\"SELECT COUNT(*) FROM hranalytics_db.bronze_performance\").show()\n",
+					"spark.sql(\"SELECT COUNT(*) FROM hranalytics_db.bronze_survey\").show()\n",
+					"spark.sql(\"SELECT COUNT(*) FROM hranalytics_db.bronze_exit\").show()\n",
+					"\n",
+					""
+				]
+			}
+		]
+	}
+}

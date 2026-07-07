@@ -1,0 +1,87 @@
+{
+	"name": "df_retail_incr_process",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_adls_incr_insurance",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_sql_curated_insuranceclaim",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_aggr_claim",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ClaimID as string,",
+				"          PolicyNumber as string,",
+				"          ClaimDate as string,",
+				"          ClaimAmount as double,",
+				"          ClaimStatus as string,",
+				"          ClaimType as string,",
+				"          IncidentDate as string,",
+				"          Description as string,",
+				"          LastModifiedTimestamp as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     wildcardPaths:['*']) ~> source1",
+				"source1 filter(ClaimAmount > 0 && !isNull(LastModifiedTimestamp) && !isNull(PolicyNumber)) ~> filter1",
+				"filter1 derive(ClaimDuration = toDate(ClaimDate) - toDate(IncidentDate),",
+				"          RiskCategory = iif(ClaimAmount > 50000,'High', iif(ClaimAmount > 10000, 'Medium', 'Low'))) ~> derivedColumn1",
+				"derivedColumn1 aggregate(groupBy(ClaimStatus,",
+				"          ClaimType),",
+				"     TotalClaimAmount = sum(ClaimAmount)) ~> aggregate1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
+			]
+		}
+	}
+}

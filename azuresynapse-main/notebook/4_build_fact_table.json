@@ -1,0 +1,125 @@
+{
+	"name": "4_build_fact_table",
+	"properties": {
+		"folder": {
+			"name": "HR-Analytics"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "inceptezspark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "7aaa3d81-b6e7-467e-8f98-995641dbc6b7"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/660da862-ec29-4eb2-a8b7-c87550e4277d/resourceGroups/inceptez-synapse-rg/providers/Microsoft.Synapse/workspaces/inceptezsynapse-ws/bigDataPools/inceptezspark",
+				"name": "inceptezspark",
+				"type": "Spark",
+				"endpoint": "https://inceptezsynapse-ws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/inceptezspark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.5",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"#Step 1: Read Silver Tables\n",
+					"\n",
+					"from pyspark.sql.functions import col, when, lit\n",
+					"\n",
+					"# Read Silver tables\n",
+					"emp_df = spark.table(\"hranalytics_db.silver_employee\")\n",
+					"perf_df = spark.table(\"hranalytics_db.silver_performance\")\n",
+					"survey_df = spark.table(\"hranalytics_db.silver_survey\")\n",
+					"exit_df = spark.table(\"hranalytics_db.silver_exit\")\n",
+					"\n",
+					"#Step 2: Read Current Dimension (SCD2)\n",
+					"#Always use only current records\n",
+					"dim_df = spark.table(\"hranalytics_db.dim_employee\") \\\n",
+					"              .filter(col(\"is_current\") == True)\n",
+					"\n",
+					"#Step 3: Join All Sources\n",
+					"fact_df = dim_df.alias(\"d\") \\\n",
+					"    .join(perf_df.alias(\"p\"), col(\"d.emp_id\") == col(\"p.emp_id\"), \"left\") \\\n",
+					"    .join(survey_df.alias(\"s\"), col(\"d.emp_id\") == col(\"s.emp_id\"), \"left\") \\\n",
+					"    .join(exit_df.alias(\"e\"), col(\"d.emp_id\") == col(\"e.emp_id\"), \"left\")\n",
+					"\n",
+					"\n",
+					"#Step 4: Derive Metrics Columns\n",
+					"\n",
+					"fact_df = fact_df.select(\n",
+					"    col(\"d.emp_id\").alias(\"emp_sk\"),\n",
+					"    col(\"p.rating\"),\n",
+					"    col(\"s.survey_score\"),\n",
+					"    col(\"p.review_date\"),\n",
+					"    col(\"s.survey_date\"),\n",
+					"    col(\"e.exit_date\"),\n",
+					"    \n",
+					"    # Attrition Flag\n",
+					"    when(col(\"e.emp_id\").isNotNull(), lit(1)).otherwise(lit(0)).alias(\"attrition_flag\"),\n",
+					"    \n",
+					"    # Engagement Bucket\n",
+					"    when(col(\"s.survey_score\") >= 8, \"High\")\n",
+					"    .when(col(\"s.survey_score\") >= 5, \"Medium\")\n",
+					"    .otherwise(\"Low\").alias(\"engagement_level\"),\n",
+					"    \n",
+					"    # Risk Flag (Early Churn Detection)\n",
+					"    when((col(\"p.rating\") <= 2) & (col(\"s.survey_score\") <= 5), 1)\n",
+					"    .otherwise(0).alias(\"churn_risk_flag\")\n",
+					")\n",
+					"\n",
+					"#Step 5: Handle Duplicates (Important)\n",
+					"\n",
+					"#If multiple records per employee (e.g., multiple reviews)\n",
+					"\n",
+					"from pyspark.sql.window import Window\n",
+					"from pyspark.sql.functions import row_number\n",
+					"\n",
+					"window_spec = Window.partitionBy(\"emp_sk\").orderBy(col(\"review_date\").desc())\n",
+					"\n",
+					"fact_df = fact_df.withColumn(\"rn\", row_number().over(window_spec)) \\\n",
+					"                 .filter(col(\"rn\") == 1) \\\n",
+					"                 .drop(\"rn\")\n",
+					"\n",
+					"#Step 6: Write to Gold Layer\n",
+					"fact_df.write.mode(\"overwrite\").saveAsTable(\"hranalytics_db.fact_employee_metrics\")\n",
+					"\n",
+					""
+				],
+				"execution_count": 2
+			}
+		]
+	}
+}

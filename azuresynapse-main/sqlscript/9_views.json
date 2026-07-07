@@ -1,0 +1,17 @@
+{
+	"name": "9_views",
+	"properties": {
+		"content": {
+			"query": "--Normal View\n\nCREATE VIEW bank_schema.vw_banktxndata\nAS\nselect * from bank_schema.bank_txns where region = 'Chennai';\n\nselect * from bank_schema.vw_banktxndata;\n\n--Materialized View\nCREATE MATERIALIZED VIEW bank_schema.vw_banktxndata_m\nWITH (DISTRIBUTION = ROUND_ROBIN)\nAS\nSELECT \n    region, \n    SUM(amt) AS total_amt,\n    COUNT_BIG(*) AS txncount,      -- Counts all rows in the group\n    COUNT_BIG(amt) AS amt_count    -- Counts only non-null values of 'amt'\nFROM bank_schema.bank_txns \nGROUP BY region;\n\nselect * from  bank_schema.vw_banktxndata_m;\n\nselect  region, SUM(amt) AS total_amt from bank_schema.bank_txns GROUP BY region;\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "inceptez_ddw",
+				"poolName": "inceptez_ddw"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

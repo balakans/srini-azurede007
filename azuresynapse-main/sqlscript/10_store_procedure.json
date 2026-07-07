@@ -1,0 +1,17 @@
+{
+	"name": "10_store_procedure",
+	"properties": {
+		"content": {
+			"query": "select * from bank_schema.bank_txns;\nselect * from bank_schema.stg_bank_txns;\n\nTRUNCATE TABLE bank_schema.stg_bank_txns;\n\nCREATE TABLE bank_schema.stg_bank_txns\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN\n)\nAS\nselect * from bank_schema.bank_txns where 1=2;\n\n--DROP PROCEDURE bank_schema.usp_ProcessBankData_WithLogic;\nALTER PROCEDURE bank_schema.usp_ProcessBankData_WithLogic\n    @ProcessType NVARCHAR(20) -- Input parameter to choose logic\nAS\nBEGIN\n    DECLARE @RowCount INT;\n\n    -- 1. Check how many rows are in the staging table\n    SELECT @RowCount = COUNT(*) FROM bank_schema.stg_bank_txns;\n\n    -- 2. IF Condition: Check if staging is empty\n    IF @RowCount = 0\n    BEGIN\n        PRINT 'No new data found in staging. Operation cancelled.';\n    END\n    ELSE\n    BEGIN\n        PRINT 'Found ' + CAST(@RowCount AS NVARCHAR(10)) + ' rows. Starting processing...';\n\n        -- 3. Nested IF: Branching logic based on Input Parameter\n        IF @ProcessType = 'INSERT'\n        BEGIN\n            -- Insert data from stg to main table\n            INSERT INTO bank_schema.bank_txns select * from bank_schema.stg_bank_txns;\n            TRUNCATE TABLE bank_schema.stg_bank_txns;\n            PRINT 'Record Inserted Successfully. Record Count:' + CAST(@RowCount AS VARCHAR);\n        END\n        ELSE IF @ProcessType = 'RELOAD'\n        BEGIN\n            -- Wipe and reload logic\n            DELETE FROM bank_schema.bank_txns;\n            INSERT INTO bank_schema.bank_txns SELECT * FROM bank_schema.stg_bank_txns;\n            PRINT 'Full reload completed.';\n        END\n        ELSE\n        BEGIN\n            PRINT 'Invalid ProcessType provided.';\n        END\n    END\nEND;\n\n\n-- Execute/Call the stored procedure\nEXEC bank_schema.usp_ProcessBankData_WithLogic @ProcessType = 'INSERT';\n\nINSERT INTO bank_schema.stg_bank_txns (txnid, txndate, custid, amt, branch, region)\nVALUES \n(1007, '2026-04-10', 'CUST008', 6500.00, 'T. Nagar', 'Chennai');\n\n\nEXEC bank_schema.usp_ProcessBankData_WithLogic @ProcessType = 'RELOAD';\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "inceptez_ddw",
+				"poolName": "inceptez_ddw"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,160 @@
+{
+	"name": "2_data_process",
+	"properties": {
+		"folder": {
+			"name": "HR-Analytics"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "inceptezspark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "cc1286ad-cdc2-485e-ab13-3123975f7ec9"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/660da862-ec29-4eb2-a8b7-c87550e4277d/resourceGroups/inceptez-synapse-rg/providers/Microsoft.Synapse/workspaces/inceptezsynapse-ws/bigDataPools/inceptezspark",
+				"name": "inceptezspark",
+				"type": "Spark",
+				"endpoint": "https://inceptezsynapse-ws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/inceptezspark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.5",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"\n",
+					"### Objective of Silver Layer\n",
+					"- Clean nulls & invalid data\n",
+					"- Standardize column names & formats\n",
+					"- Deduplicate records\n",
+					"- Join datasets for analytics-ready structure\n",
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"\n",
+					"#Step 1: Read Bronze Tables\n",
+					"employee_df = spark.read.table(\"hranalytics_db.bronze_employee\")\n",
+					"performance_df = spark.read.table(\"hranalytics_db.bronze_performance\")\n",
+					"survey_df = spark.read.table(\"hranalytics_db.bronze_survey\")\n",
+					"exit_df = spark.read.table(\"hranalytics_db.bronze_exit\")\n",
+					"\n",
+					"#Step 2: Standardize Column Names\n",
+					"from pyspark.sql.functions import col\n",
+					"\n",
+					"def standardize_columns(df):\n",
+					"    for c in df.columns:\n",
+					"        df = df.withColumnRenamed(c, c.strip().lower().replace(\" \", \"_\"))        \n",
+					"    \n",
+					"    #drop columns\n",
+					"    df = df.drop(\"ingestion_time\", \"source_file\")\n",
+					"    return df\n",
+					"\n",
+					"employee_df = standardize_columns(employee_df)\n",
+					"performance_df = standardize_columns(performance_df)\n",
+					"survey_df = standardize_columns(survey_df)\n",
+					"exit_df = standardize_columns(exit_df)\n",
+					"\n",
+					"#Step 3: Data Cleaning\n",
+					"# Employee Cleaning\n",
+					"from pyspark.sql.functions import when\n",
+					"\n",
+					"employee_clean = employee_df.dropDuplicates([\"emp_id\"]) \\\n",
+					"    .withColumn(\"salary\", col(\"salary\").cast(\"double\")) \\\n",
+					"    .fillna({\n",
+					"        \"dept\": \"Unknown\",\n",
+					"        \"role\": \"Unknown\"\n",
+					"    }) \\\n",
+					"    .filter(col(\"emp_id\").isNotNull())\n",
+					"\n",
+					"#Performance Cleaning\n",
+					"performance_clean = performance_df.dropDuplicates() \\\n",
+					"    .withColumn(\"rating\", col(\"rating\").cast(\"int\")) \\\n",
+					"    .filter(col(\"emp_id\").isNotNull())\n",
+					"\n",
+					"#Survey Cleaning (eNPS prep)\n",
+					"survey_clean = survey_df.dropDuplicates() \\\n",
+					"    .withColumn(\"survey_score\", col(\"survey_score\").cast(\"int\")) \\\n",
+					"    .withColumn(\"enps_category\",\n",
+					"        when(col(\"survey_score\") >= 9, \"Promoter\")\n",
+					"        .when(col(\"survey_score\") >= 5, \"Passive\")\n",
+					"        .otherwise(\"Detractor\")\n",
+					"    )\n",
+					"\n",
+					"#Exit Data Cleaning\n",
+					"exit_clean = exit_df.dropDuplicates() \\\n",
+					"    .filter(col(\"emp_id\").isNotNull()) \\\n",
+					"    .withColumnRenamed(\"reason\", \"exit_reason\")"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"employee_clean.write.format(\"delta\") \\\n",
+					"    .mode(\"overwrite\") \\\n",
+					"    .option(\"overwriteSchema\", \"true\") \\\n",
+					"    .saveAsTable(\"hranalytics_db.silver_employee\")\n",
+					"\n",
+					"performance_clean.write.format(\"delta\") \\\n",
+					"    .mode(\"overwrite\") \\\n",
+					"    .option(\"overwriteSchema\", \"true\") \\\n",
+					"    .saveAsTable(\"hranalytics_db.silver_performance\")\n",
+					"\n",
+					"survey_clean.write.format(\"delta\") \\\n",
+					"    .mode(\"overwrite\") \\\n",
+					"    .option(\"overwriteSchema\", \"true\") \\\n",
+					"    .saveAsTable(\"hranalytics_db.silver_survey\")\n",
+					"\n",
+					"exit_clean.write.format(\"delta\") \\\n",
+					"    .mode(\"overwrite\") \\\n",
+					"    .option(\"overwriteSchema\", \"true\") \\\n",
+					"    .saveAsTable(\"hranalytics_db.silver_exit\")"
+				],
+				"execution_count": 2
+			}
+		]
+	}
+}

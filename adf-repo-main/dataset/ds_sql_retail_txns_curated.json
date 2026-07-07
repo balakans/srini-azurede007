@@ -1,0 +1,17 @@
+{
+	"name": "ds_sql_retail_txns_curated",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "retail_txns_curated"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

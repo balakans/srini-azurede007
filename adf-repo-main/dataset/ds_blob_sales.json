@@ -1,0 +1,27 @@
+{
+	"name": "ds_blob_sales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_retail",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "retail"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "salesdata1",
+				"container": "retaildata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

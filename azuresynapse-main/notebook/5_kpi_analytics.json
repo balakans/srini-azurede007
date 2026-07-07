@@ -1,0 +1,136 @@
+{
+	"name": "5_kpi_analytics",
+	"properties": {
+		"folder": {
+			"name": "HR-Analytics"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "inceptezspark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "59dfc58e-82a5-4237-b7df-a2f2d310060a"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/660da862-ec29-4eb2-a8b7-c87550e4277d/resourceGroups/inceptez-synapse-rg/providers/Microsoft.Synapse/workspaces/inceptezsynapse-ws/bigDataPools/inceptezspark",
+				"name": "inceptezspark",
+				"type": "Spark",
+				"endpoint": "https://inceptezsynapse-ws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/inceptezspark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.5",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					}
+				},
+				"source": [
+					"%%sql\n",
+					"\n",
+					"select * from hranalytics_db.fact_employee_metrics;"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"--Attrition Rate\n",
+					"SELECT \n",
+					"    'Attrition Rate' as metrics_name, \n",
+					"    COUNT(CASE WHEN attrition_flag = 1 THEN 1 END) * 100.0 / COUNT(*) AS metrics_value\n",
+					"FROM hranalytics_db.fact_employee_metrics;"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"--Resignation Drivers\n",
+					"SELECT exit_reason, COUNT(*) AS cnt\n",
+					"FROM hranalytics_db.silver_exit\n",
+					"GROUP BY exit_reason\n",
+					"ORDER BY cnt DESC;"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"--Engagement Score\n",
+					"SELECT AVG(survey_score) AS avg_engagement\n",
+					"FROM hranalytics_db.fact_employee_metrics;\n",
+					"\n",
+					"--eNPS Score\n",
+					"SELECT \n",
+					"    (COUNT(CASE WHEN survey_score >= 9 THEN 1 END) -\n",
+					"     COUNT(CASE WHEN survey_score <= 6 THEN 1 END)) * 100.0 / COUNT(*) AS eNPS\n",
+					"FROM hranalytics_db.fact_employee_metrics;\n",
+					"\n",
+					"--Early Churn Detection\n",
+					"SELECT emp_sk\n",
+					"FROM hranalytics_db.fact_employee_metrics\n",
+					"WHERE rating < 2 AND survey_score < 5;\n",
+					"\n",
+					""
+				],
+				"execution_count": 5
+			}
+		]
+	}
+}

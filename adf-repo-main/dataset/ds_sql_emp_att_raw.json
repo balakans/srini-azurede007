@@ -1,0 +1,17 @@
+{
+	"name": "ds_sql_emp_att_raw",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "emattendance_raw"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

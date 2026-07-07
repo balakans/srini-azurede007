@@ -1,0 +1,17 @@
+{
+	"name": "8_External_Table",
+	"properties": {
+		"content": {
+			"query": "-- Step1: Creates a master key for encryption\nCREATE MASTER KEY ENCRYPTION BY PASSWORD = 'AzureInceptez@_123!';\n\n-- Step2: Create a credential using the Workspace Managed Identity\nCREATE DATABASE SCOPED CREDENTIAL wsidentity\nWITH IDENTITY = 'Managed Identity';\n\n--Step3: Create an External Data Source\nDROP EXTERNAL DATA SOURCE bankdata_src\nCREATE EXTERNAL DATA SOURCE bankdata_src\nWITH\n(\n    LOCATION = 'abfss://bankdata@inceptezadlsbankdata.dfs.core.windows.net/',\n    CREDENTIAL = wsidentity\n);\n\n--Step4: Create an External file format\nCREATE EXTERNAL FILE FORMAT bankdata_fileformat\nWITH\n(\n    FORMAT_TYPE = DELIMITEDTEXT,\n    FORMAT_OPTIONS (\n        FIELD_TERMINATOR = ',',\n        FIRST_ROW = 2\n    )\n);\n\n\nDROP EXTERNAL TABLE bank_schema.bank_txns_ext;\nCREATE EXTERNAL TABLE bank_schema.bank_txns_ext\n(\n    txnid varchar(10),\n    txndate date,\n    custid varchar(20),\n    amt float,\n    branch varchar(50),\n    region varchar(50),\n    payment_type varchar(20)\n)\nWITH\n(\n    LOCATION = 'bank_txns.csv',\n    DATA_SOURCE = bankdata_src,\n    FILE_FORMAT = bankdata_fileformat\n);\n\nselect * from bank_schema.bank_txns_ext;\n\n\n--insert int.. copy from external table to dedicated sql table\ninsert into bank_schema.bank_txns select txnid,txndate,custid,amt,branch,region from bank_schema.bank_txns_ext;\n\n--CTAS\nCREATE TABLE bank_schema.bank_txns1\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN\n)\nAS\nselect txnid,txndate,custid,amt,branch,region from bank_schema.bank_txns_ext;\n\nselect * from bank_schema.bank_txns1;\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "inceptez_dw",
+				"poolName": "inceptez_dw"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

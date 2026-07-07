@@ -1,0 +1,39 @@
+{
+	"name": "ds_adls_drugs",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_hc",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "diagnosis_code",
+				"type": "varchar"
+			},
+			{
+				"name": "drug_name",
+				"type": "varchar"
+			},
+			{
+				"name": "treatment_type",
+				"type": "varchar"
+			},
+			{
+				"name": "drug_category",
+				"type": "varchar"
+			},
+			{
+				"name": "last_updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "drug_master"
+		}
+	}
+}

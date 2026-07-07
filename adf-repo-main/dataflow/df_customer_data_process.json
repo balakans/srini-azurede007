@@ -1,0 +1,52 @@
+{
+	"name": "df_customer_data_process",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_cust_src",
+						"type": "DatasetReference"
+					},
+					"name": "srccustomer"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_blob_customer",
+						"type": "DatasetReference"
+					},
+					"name": "sinkblob"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          custid as integer,",
+				"          fname as string,",
+				"          lname as string,",
+				"          age as short,",
+				"          profession as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> srccustomer",
+				"srccustomer sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          txn_id as string,",
+				"          txn_date as string,",
+				"          cust_id as string,",
+				"          amount as string,",
+				"          branch as string,",
+				"          region as string,",
+				"          payment_type as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkblob"
+			]
+		}
+	}
+}

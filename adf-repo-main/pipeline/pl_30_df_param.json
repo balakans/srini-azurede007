@@ -1,0 +1,55 @@
+{
+	"name": "pl_30_df_param",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "df_retail_param",
+						"type": "DataFlowReference",
+						"parameters": {
+							"p_prof": {
+								"value": "'@{pipeline().parameters.prof}'",
+								"type": "Expression"
+							},
+							"p_targetname": {
+								"value": "'@{variables('targetfilename')}'",
+								"type": "Expression"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"prof": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"targetfilename": {
+				"type": "String",
+				"defaultValue": "\"trans.csv\""
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-03-06T01:00:01Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

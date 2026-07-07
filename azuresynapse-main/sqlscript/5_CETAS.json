@@ -1,0 +1,17 @@
+{
+	"name": "5_CETAS",
+	"properties": {
+		"content": {
+			"query": "--1. Create the file format\nCREATE EXTERNAL FILE FORMAT parquet_format\nWITH\n(\n    FORMAT_TYPE = PARQUET\n);\n\n--2. Create the data source - bankdata_source_mi\n\n--3. Create CETAS table\nCREATE EXTERNAL TABLE ext_bankdata_cetas\nWITH\n(\n    LOCATION = 'optimized/bank_txns',\n    DATA_SOURCE = bankdata_source_mi,\n    FILE_FORMAT = parquet_format\n)\nAS\nSELECT * FROM ext_bankdata;\n\nselect * from ext_bankdata_cetas;\n\n--Views\ncreate or alter VIEW vw_ext_bankdata\nAS\nselect cust_id,amount,branch from ext_bankdata_cetas where region = 'EAST';\n\nselect * from vw_ext_bankdata;\n\nselect * from INFORMATION_SCHEMA.TABLES where TABLE_TYPE = 'VIEW';\n\n--Schema\ncreate schema bankschema;\n\ncreate or alter VIEW bankschema.vw_ext_bankdata1\nAS\nselect cust_id,amount,branch from ext_bankdata_cetas where region = 'EAST';\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "inceptezdb",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "11_access_lake_database",
+	"properties": {
+		"content": {
+			"query": "\nselect * from inceptez_salesdb.dbo.orders_delta;\n\nselect * from inceptezdb.dbo.ext_bankdata;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "inceptez_salesdb",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

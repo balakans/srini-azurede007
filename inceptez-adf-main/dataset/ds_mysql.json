@@ -1,0 +1,16 @@
+{
+	"name": "ds_mysql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_mysql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "`hospital_info`"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

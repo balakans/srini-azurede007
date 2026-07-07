@@ -1,0 +1,17 @@
+{
+	"name": "7_Copy_Into",
+	"properties": {
+		"content": {
+			"query": "\nCREATE TABLE bank_schema.customerdata(\n    custid INT,\n    fname varchar(100),\n    lname varchar(100),\n    age int,\n    prof varchar(100)\n)\nWITH\n(\n     CLUSTERED COLUMNSTORE INDEX,\n     DISTRIBUTION = ROUND_ROBIN\n);\n\n\nCOPY INTO bank_schema.customerdata\nFROM 'https://batch25synapseadls.dfs.core.windows.net/raw/custdata.csv'\nWITH(\n    FILE_TYPE = 'CSV',\n    FIRSTROW = 2\n);\n\nselect * from bank_schema.customerdata;\n\n\nCreate table bank_schema.bank_txns_adls\n(\n    txnid varchar(20),\n    txndate date,\n    custid varchar(20),\n    amt float,\n    branch varchar(50),\n    region varchar(50)\n)\nWITH\n(\n    CLUSTERED COLUMNSTORE INDEX,  --large amount of data, compress and best of performance\n    DISTRIBUTION = HASH(region)  -- distributes data evenly across all nodes\n);\n\n--reading data from external storage account\n\nCOPY INTO bank_schema.bank_txns_adls\nFROM 'https://inceptezadlsbankdata.dfs.core.windows.net/bankdata/bank_txns.csv'\nWITH(\n    FILE_TYPE = 'CSV',\n    FIRSTROW = 2,\n    CREDENTIAL = (IDENTITY = 'Managed Identity')\n\n);\n\nselect * from bank_schema.bank_txns_adls;\n\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "inceptez_dw",
+				"poolName": "inceptez_dw"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

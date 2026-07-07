@@ -1,0 +1,35 @@
+{
+	"name": "schedule_trg",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_11_check_file_adls_sqlserver",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "pl_12_sql_adls_fixed_window",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"pstartdate": "2026-02-03",
+					"penddate": "2026-02-03"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 3,
+				"startTime": "2026-02-18T03:28:00",
+				"endTime": "2026-02-19T03:28:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

@@ -1,0 +1,128 @@
+{
+	"name": "df_emp_attendance",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_adls_emp_att",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_sql_emp_atten",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_sql_emp_att_raw",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "derivedColumn2"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "surrogateKey1"
+				},
+				{
+					"name": "select2"
+				},
+				{
+					"name": "derivedColumn3"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          EmpID as short,",
+				"          EmpName as string,",
+				"          Department as string,",
+				"          WorkingHours as short,",
+				"          OvertimeHours as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(EmpName = iif(isNull(EmpName),'NA',EmpName),",
+				"          Department = iif(isNull(Department),'NA',Department),",
+				"          WorkingHours = iif(isNull(WorkingHours),0, toInteger(WorkingHours)),",
+				"          OvertimeHours = iif(isNull(OvertimeHours),0,toInteger(OvertimeHours))) ~> derivedColumn1",
+				"derivedColumn1 derive(TotalHours = WorkingHours + OvertimeHours) ~> derivedColumn2",
+				"derivedColumn2 select(mapColumn(",
+				"          Eid = EmpID,",
+				"          EName = EmpName,",
+				"          Dept = Department,",
+				"          Totalhrs = TotalHours,",
+				"          Workhrs = WorkingHours,",
+				"          Overtimehrs = OvertimeHours",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 filter(Totalhrs > 0) ~> filter1",
+				"filter1 keyGenerate(output(SeqId as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey1",
+				"surrogateKey1 select(mapColumn(",
+				"          SeqId,",
+				"          Eid,",
+				"          EName,",
+				"          Dept,",
+				"          Totalhrs,",
+				"          Workhrs,",
+				"          Overtimehrs",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"source1 derive(Source = toString('DataFlow')) ~> derivedColumn3",
+				"select2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          SeqId,",
+				"          Eid,",
+				"          EName,",
+				"          Dept,",
+				"          Totalhrs,",
+				"          Workhrs,",
+				"          Overtimehrs",
+				"     )) ~> sink1",
+				"derivedColumn3 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
+			]
+		}
+	}
+}

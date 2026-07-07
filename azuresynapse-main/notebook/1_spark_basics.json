@@ -1,0 +1,139 @@
+{
+	"name": "1_spark_basics",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "inceptezspark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "4199833a-2697-428b-82f7-a41a8b0be392"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/660da862-ec29-4eb2-a8b7-c87550e4277d/resourceGroups/inceptez-synapse-rg/providers/Microsoft.Synapse/workspaces/inceptezsynapse-ws/bigDataPools/inceptezspark",
+				"name": "inceptezspark",
+				"type": "Spark",
+				"endpoint": "https://inceptezsynapse-ws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/inceptezspark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.5",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Sales Data Analysis using Spark\n",
+					"\n",
+					"## Objective\n",
+					"Analyze sales trends\n",
+					"\n",
+					"### Steps\n",
+					"- Load data from ADLS\n",
+					"- Transform using Spark\n",
+					"- Generate KPIs\n",
+					"\n",
+					"### Code\n",
+					"\n",
+					"```python\n",
+					"df = spark.read.csv(\"abfss://container/file.csv\")\n",
+					"print(\"Hello\") \n",
+					"print(\"World\")\n",
+					"```\n",
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from pyspark.sql import SparkSession\n",
+					"\n",
+					"# Create a SparkSession\n",
+					"spark1 = SparkSession.builder.appName(\"synapseworkouts\").getOrCreate()\n",
+					"data = [\n",
+					"    (1, \"Rajesh\", 25),\n",
+					"    (2, \"Vimal\", 30),\n",
+					"    (3, \"Charlie\", 35),\n",
+					"    (4, \"David\", 40)\n",
+					"]\n",
+					"\n",
+					"df = spark.createDataFrame(data, [\"id\", \"name\", \"age\"])\n",
+					"df.show()"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"#Read from Data Lake\n",
+					"df = spark.read.format(\"csv\").option(\"inferschema\",True).load(\"abfss://raw@batch25synapseadls.dfs.core.windows.net/txns\") \\\n",
+					".toDF(\"txnid\",\"txndate\",\"custid\",\"amount\",\"category\",\"product\",\"city\",\"state\",\"paytype\")\n",
+					"df.printSchema()\n",
+					"df.show()"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"df1 = df.filter(\"state = 'Texas' and paytype = 'credit'\")\n",
+					"df1.show()"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from pyspark.sql.functions import count,sum,round\n",
+					"df1 = df.groupBy(\"state\").agg(count(\"txnid\").alias(\"TotalTrans\"),round(sum(\"amount\"),2).alias(\"TotalSales\"))\n",
+					"df1.show()"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"#Write into ADLS\n",
+					"df1.write.format(\"parquet\").save(\"abfss://raw@batch25synapseadls.dfs.core.windows.net/salesreport\")\n",
+					"print(\"Data Written into Data Lake\")"
+				],
+				"execution_count": 6
+			}
+		]
+	}
+}

@@ -1,0 +1,36 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Initialize the driver
+driver = webdriver.Chrome()
+
+try:
+    # 1. Navigate to the base URL
+    driver.get("https://weblogicserver-url/console")
+    wait = WebDriverWait(driver, 10)
+
+    # 2. Click the 'Login' link first
+    # Using LINK_TEXT to find the <a>Login</a> tag
+    login_link = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Login")))
+    login_link.click()
+    print("Clicked the Login link.")
+
+    # 3. Enter Credentials
+    # We wait for the fields to appear after the link is clicked
+    username_field = wait.until(EC.presence_of_element_located((By.ID, "j_username")))
+    password_field = driver.find_element(By.ID, "j_password")
+
+    username_field.send_keys("your_username")
+    password_field.send_keys("your_password")
+    print("Credentials entered.")
+
+    # 4. Final Click to submit (usually the same button ID or another link)
+    # Often, after clicking the first link, a 'Sign In' or 'Login' button appears
+    submit_button = driver.find_element(By.ID, "loginbtn") 
+    submit_button.click()
+    print("Form submitted successfully.")
+
+except Exception as e:
+    print(f"Workflow failed: {e}")

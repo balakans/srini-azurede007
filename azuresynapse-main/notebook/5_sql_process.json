@@ -1,0 +1,296 @@
+{
+	"name": "5_sql_process",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "inceptezspark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "25d32ca6-db37-46f9-b97d-a2430afd4df9"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/660da862-ec29-4eb2-a8b7-c87550e4277d/resourceGroups/inceptez-synapse-rg/providers/Microsoft.Synapse/workspaces/inceptezsynapse-ws/bigDataPools/inceptezspark",
+				"name": "inceptezspark",
+				"type": "Spark",
+				"endpoint": "https://inceptezsynapse-ws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/inceptezspark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.5",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"--Create database\n",
+					"CREATE DATABASE inceptez_salesdb;\n",
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"\n",
+					"DESCRIBE DATABASE EXTENDED inceptez_salesdb;"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"spark.sql(\"CREATE DATABASE inceptez_salesdb\")"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"\n",
+					"--Create CSV Managed Table\n",
+					"CREATE TABLE IF NOT EXISTS inceptez_salesdb.Orders (\n",
+					"    OrderId INT,\n",
+					"    Product STRING,\n",
+					"    Amount DOUBLE\n",
+					")\n",
+					"USING CSV;"
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"\n",
+					"--Create Parquet Managed Table\n",
+					"CREATE TABLE IF NOT EXISTS inceptez_salesdb.Orders_parquet (\n",
+					"    OrderId INT,\n",
+					"    Product STRING,\n",
+					"    Amount DOUBLE\n",
+					")\n",
+					"USING PARQUET;"
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"\n",
+					"--Create delta Managed Table\n",
+					"CREATE TABLE IF NOT EXISTS inceptez_salesdb.Orders_delta (\n",
+					"    OrderId INT,\n",
+					"    Product STRING,\n",
+					"    Amount DOUBLE\n",
+					")\n",
+					"USING DELTA;"
+				],
+				"execution_count": 16
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"\n",
+					"insert into inceptez_salesdb.Orders_delta values(100,'Food',200);"
+				],
+				"execution_count": 17
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"\n",
+					"select * from inceptez_salesdb.Orders_delta;"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"describe table extended  inceptez_salesdb.Orders_delta"
+				],
+				"execution_count": 22
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"mssparkutils.fs.ls(\"abfss://raw@batch25synapseadls.dfs.core.windows.net/synapse/workspaces/inceptezsynapse-ws/warehouse/inceptez_salesdb.db/orders_delta\")"
+				],
+				"execution_count": 23
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"--create external table\n",
+					"CREATE TABLE IF NOT EXISTS inceptez_salesdb.Orders_external (\n",
+					"    OrderId INT,\n",
+					"    Product STRING,\n",
+					"    Amount DOUBLE\n",
+					")\n",
+					"USING DELTA\n",
+					"LOCATION 'abfss://raw@batch25synapseadls.dfs.core.windows.net/synapse/workspaces/inceptezsynapse-ws/warehouse/inceptez_salesdb.db/orders_delta'"
+				],
+				"execution_count": 24
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"select * from inceptez_salesdb.Orders_external"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"DESCRIBE TABLE FORMATTED inceptez_salesdb.Orders_external;"
+				],
+				"execution_count": 25
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"select * from csv.`abfss://raw@batch25synapseadls.dfs.core.windows.net/custdata.csv`;\n",
+					"\n",
+					"select * from delta.`abfss://raw@batch25synapseadls.dfs.core.windows.net/synapse/workspaces/inceptezsynapse-ws/warehouse/inceptez_salesdb.db/orders_delta`;\n",
+					""
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"-- Step 1: Create the empty table with your schema\n",
+					"CREATE TABLE inceptez_salesdb.tbl_custdata_csv (\n",
+					"    custid STRING,\n",
+					"    fname STRING,\n",
+					"    lname STRING,\n",
+					"    age STRING,\n",
+					"    prof STRING\n",
+					")\n",
+					"USING CSV;\n",
+					"\n",
+					"-- Step 2: Insert the data into the defined table\n",
+					"INSERT INTO inceptez_salesdb.tbl_custdata_csv\n",
+					"SELECT * FROM csv.`abfss://raw@batch25synapseadls.dfs.core.windows.net/custdata.csv`;"
+				],
+				"execution_count": 12
+			}
+		]
+	}
+}

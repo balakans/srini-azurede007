@@ -1,0 +1,29 @@
+{
+	"name": "trg_tumb_ins_data_process",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipeline": {
+			"pipelineReference": {
+				"referenceName": "pl_32_reprocess",
+				"type": "PipelineReference"
+			},
+			"parameters": {
+				"process_dt": "@formatDateTime(trigger().outputs.windowStartTime, 'yyyy-MM-dd')"
+			}
+		},
+		"type": "TumblingWindowTrigger",
+		"typeProperties": {
+			"frequency": "Hour",
+			"interval": 24,
+			"startTime": "2026-03-08T02:07:00Z",
+			"endTime": "2026-03-15T02:07:00Z",
+			"delay": "00:00:00",
+			"maxConcurrency": 1,
+			"retryPolicy": {
+				"intervalInSeconds": 30
+			},
+			"dependsOn": []
+		}
+	}
+}

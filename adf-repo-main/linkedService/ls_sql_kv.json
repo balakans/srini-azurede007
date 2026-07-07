@@ -1,0 +1,25 @@
+{
+	"name": "ls_sql_kv",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "inceptezwd25.database.windows.net",
+			"database": "dbwdbatch25",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "inceptezuser",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_kv",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "dbpassword",
+				"secretVersion": "14e827b96a53459e97afdb5ef78b922b"
+			}
+		}
+	}
+}

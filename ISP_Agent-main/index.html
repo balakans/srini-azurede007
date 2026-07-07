@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inceptez ISP Support</title>
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --bg-color: #f4f7f9;
+            --chat-bg: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --user-msg: #0066cc;
+            --agent-msg: #e1ecf7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            width: 450px;
+            max-width: 90%;
+            height: 600px;
+            background: var(--chat-bg);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header Style */
+        .chat-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-header .avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .chat-header .status-info h2 {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .chat-header .status-info p {
+            font-size: 12px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .chat-header .status-info p::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #2ecc71;
+            border-radius: 50%;
+        }
+
+        /* Chat Window Area */
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background: #fcfdfe;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .message.agent {
+            background: var(--agent-msg);
+            color: var(--text-dark);
+            align-self: flex-start;
+            border-top-left-radius: 4px;
+        }
+
+        .message.user {
+            background: var(--user-msg);
+            color: white;
+            align-self: flex-end;
+            border-top-right-radius: 4px;
+        }
+
+        .typing-indicator {
+            align-self: flex-start;
+            background: var(--agent-msg);
+            padding: 12px 16px;
+            border-radius: 12px;
+            display: none;
+            gap: 4px;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: var(--text-light);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+            opacity: 0.6;
+        }
+
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+
+        /* Input Area Style */
+        .chat-input-area {
+            padding: 16px;
+            background: var(--chat-bg);
+            border-top: 1px solid #eeeeee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #cccccc;
+            border-radius: 24px;
+            outline: none;
+            font-size: 14px;
+            transition: border 0.2s;
+        }
+
+        .chat-input-area input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .chat-input-area button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .chat-input-area button:hover {
+            background: #0052a3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="avatar">⚡</div>
+            <div class="status-info">
+                <h2> Inceptez ISP Support</h2>
+                <p>AI Agent Online</p>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message agent">
+                Hello! Welcome to Apex Net automated support. How can I assist you with your internet connection or ticketing metrics today?
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Type your issue or query here..." autocomplete="off">
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Session ID tracking across sequential conversational turns
+        let sessionId = null;
+
+        // Change this if your FastAPI backend runs on a separate port/host
+        const API_BASE_URL = 'http://localhost:8000/api/chat';
+
+        function appendMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', sender);
+            msgDiv.innerText = text;
+
+            // Ensure message inserts right before the typing indicator block
+            chatMessages.insertBefore(msgDiv, typingIndicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function handleSendMessage() {
+            const query = userInput.value.trim();
+            if (!query) return;
+
+            // 1. Render User message in UI instantly
+            appendMessage(query, 'user');
+            userInput.value = '';
+
+            // 2. Display Typing Dots animation
+            typingIndicator.style.display = 'flex';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                // 3. Build target URL with parameters for the FastAPI GET request
+                let targetUrl = `${API_BASE_URL}?message=${encodeURIComponent(query)}`;
+                if (sessionId) {
+                    targetUrl += `&session_id=${encodeURIComponent(sessionId)}`;
+                }
+
+                // 4. Hit the REST API
+                const response = await fetch(targetUrl, { method: 'GET' });
+
+                if (!response.ok) {
+                    throw new Error('Network execution error encountered.');
+                }
+
+                const data = await response.json();
+
+                // 5. Commit session ID state tracking updates
+                if (data.session_id) {
+                    sessionId = data.session_id;
+                }
+
+                // 6. Print Agent Response text string to the UI
+                appendMessage(data.response, 'agent');
+
+            } catch (error) {
+                console.error(error);
+                appendMessage("Sorry, I am experiencing temporary issues communicating with the support engine. Please try again shortly.", "agent");
+            } finally {
+                // Hide Typing Dots
+                typingIndicator.style.display = 'none';
+            }
+        }
+
+        // Event Trigger Handlers
+        sendBtn.addEventListener('click', handleSendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSendMessage();
+        });
+    </script>
+</body>
+</html>

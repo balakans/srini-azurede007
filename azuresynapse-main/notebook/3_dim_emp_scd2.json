@@ -1,0 +1,115 @@
+{
+	"name": "3_dim_emp_scd2",
+	"properties": {
+		"folder": {
+			"name": "HR-Analytics"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "inceptezspark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "e2b36e36-407a-418b-a765-e2ed71df93bd"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/660da862-ec29-4eb2-a8b7-c87550e4277d/resourceGroups/inceptez-synapse-rg/providers/Microsoft.Synapse/workspaces/inceptezsynapse-ws/bigDataPools/inceptezspark",
+				"name": "inceptezspark",
+				"type": "Spark",
+				"endpoint": "https://inceptezsynapse-ws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/inceptezspark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.5",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"#Step 1: Read Tables\n",
+					"from pyspark.sql.functions import current_date, lit, col\n",
+					"\n",
+					"df = spark.table(\"hranalytics_db.silver_employee\").alias(\"src\")\n",
+					"dim_df = spark.table(\"hranalytics_db.dim_employee\").alias(\"tgt\")\n",
+					"\n",
+					"#Step 2: Detect Changed Records\n",
+					"changed_df = df.join(dim_df, col(\"src.emp_id\") == col(\"tgt.emp_id\")) \\\n",
+					"   .filter(\n",
+					"       (col(\"tgt.is_current\") == True) & (\n",
+					"           (col(\"src.salary\") != col(\"tgt.salary\")) |\n",
+					"           (col(\"src.role\") != col(\"tgt.role\")) |\n",
+					"           (col(\"src.dept\") != col(\"tgt.dept\")) |\n",
+					"           (col(\"src.location\") != col(\"tgt.location\"))\n",
+					"       )\n",
+					"   ).select(\"src.*\")\n",
+					"\n",
+					"#Step 3: Detect New Employees (Insert)\n",
+					"new_df = df.join(dim_df, \"emp_id\", \"left_anti\")\n",
+					"\n",
+					"#Step 4: Expire Old Records\n",
+					"expired_df = dim_df.alias(\"tgt\") \\\n",
+					"   .join(changed_df.alias(\"src\"), \"emp_id\") \\\n",
+					"   .filter(col(\"tgt.is_current\") == True) \\\n",
+					"   .select(\"tgt.*\") \\\n",
+					"   .withColumn(\"end_date\", current_date()) \\\n",
+					"   .withColumn(\"is_current\", lit(False))\n",
+					"expired_df.printSchema()\n",
+					"\n",
+					"#Step 5: Prepare New Records (for both changed + new)\n",
+					"insert_df = changed_df.union(new_df) \\\n",
+					"   .withColumn(\"start_date\", current_date()) \\\n",
+					"   .withColumn(\"end_date\", lit(None)) \\\n",
+					"   .withColumn(\"is_current\", lit(True))\n",
+					"insert_df.printSchema()\n",
+					"\n",
+					"#Final Merge Logic\n",
+					"# Keep unchanged records\n",
+					"unchanged_df = dim_df.alias(\"tgt\") \\\n",
+					"   .join(changed_df.alias(\"src\"), \"emp_id\", \"left_anti\")\n",
+					"unchanged_df.printSchema()\n",
+					"\n",
+					"# Final dataset\n",
+					"final_df = unchanged_df.union(expired_df).union(insert_df)\n",
+					"\n",
+					"# Write to temp\n",
+					"final_df.write.mode(\"overwrite\").saveAsTable(\"hranalytics_db.employee_tmp\")\n",
+					"\n",
+					"#Write back\n",
+					"df_tmp = spark.table(\"hranalytics_db.employee_tmp\")\n",
+					"df_tmp.write.mode(\"overwrite\").saveAsTable(\"hranalytics_db.dim_employee\")\n",
+					""
+				],
+				"execution_count": 1
+			}
+		]
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "ds_aggr_claim",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_aggr_ins_claim"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,24 @@
+{
+	"name": "event_trg",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_13_event_trigger",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/moviedata/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/b5e4da8f-c8ad-48d8-8ecc-f5bc2da0685f/resourceGroups/rg-adf/providers/Microsoft.Storage/storageAccounts/saadlsadf",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

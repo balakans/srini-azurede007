@@ -1,0 +1,17 @@
+{
+	"name": "3_Data_Operations",
+	"properties": {
+		"content": {
+			"query": "--JSON data\nSELECT *\nFROM OPENROWSET(\n    BULK 'https://batch25synapseadls.dfs.core.windows.net/raw/orders.json',\n    FORMAT = 'CSV',  -- trick to read raw JSON\n    FIELDTERMINATOR = '0x0b',\n    FIELDQUOTE = '0x0b',\n    ROWTERMINATOR = '0x0b'\n) \nWITH (\n    jsondata NVARCHAR(MAX)\n)\nAS rows;\n\n\n\n\n--parse json data\n\nSELECT JSON_VALUE(jsondata,'$.order_id') as order_id\nFROM OPENROWSET(\n    BULK 'https://batch25synapseadls.dfs.core.windows.net/raw/orders.json',\n    FORMAT = 'CSV',  -- trick to read raw JSON\n    FIELDTERMINATOR = '0x0b',\n    FIELDQUOTE = '0x0b',\n    ROWTERMINATOR = '0x0b'\n) \nWITH (\n    jsondata NVARCHAR(MAX)\n)\nAS rows;\n\n\n\n---\n\nSELECT order_id,customer, amount,city\nFROM OPENROWSET(\n    BULK 'https://batch25synapseadls.dfs.core.windows.net/raw/orders.json',\n    FORMAT = 'CSV',  \n    FIELDTERMINATOR = '0x0b',\n    FIELDQUOTE = '0x0b',\n    ROWTERMINATOR = '0x0b'  -- This is the missing piece\n) \nWITH (\n    jsondata NVARCHAR(MAX) \n) as src\nCROSS APPLY OPENJSON(jsondata)\nWITH \n(\n    order_id INT '$.order_id',\n    customer VARCHAR(100) '$.customer',\n    amount FLOAT '$.amount',\n    city VARCHAR(100) '$.city'\n)\nAS rows;\n\n---create data source\nuse inceptezdb;\n\nDROP  EXTERNAL DATA SOURCE raw_container;\n\nCREATE EXTERNAL DATA SOURCE raw_container\nWITH\n(\n    LOCATION = 'https://batch25synapseadls.dfs.core.windows.net/raw/'\n);\n\n\nselect * from OPENROWSET(\n    BULK 'Unemployment.csv',\n    DATA_SOURCE = 'raw_container',\n    FORMAT = 'CSV',\n    HEADER_ROW = TRUE,\n    PARSER_VERSION = '2.0'\n) as data1;\n\n\n--create external file format\n\nCREATE EXTERNAL FILE FORMAT synapse_csv_format\nWITH\n(\n    FORMAT_TYPE = DELIMITEDTEXT\n    FORMAT_OPTIONS (\n        FIELD_TERMINATOR = ',',\n        FIRST_ROW = 2\n    )\n);\n\n--create external table\n\nCREATE EXTERNAL TABLE ext_unemployement\n(\n    line_number int,\n    month varchar(10)\n)\nWITH\n(\n    LOCATION = 'Unemployment.csv',\n    DATA_SOURCE = raw_container,\n    FILE_FORMAT = synapse_csv_format\n);\n\nselect * from ext_unemployement\n\nCREATE EXTERNAL TABLE ext_txns\n(\n    txnid int,\n    txndate varchar(20),\n    custid varchar(10),\n    amount float,\n    category varchar(100),\n    product varchar(100),\n    city varchar(100),\n    state varchar(100),\n    ptype varchar(10)\n)\nWITH\n(\n    LOCATION = 'txns',\n    DATA_SOURCE = raw_container,\n    FILE_FORMAT = synapse_csv_format\n);\n\nselect * from ext_txns;\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "inceptezdb",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

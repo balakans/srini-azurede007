@@ -1,0 +1,14 @@
+langchain
+langchain-core
+langchain-community
+langchain-google-genai
+pinecone
+pandas
+pymysql
+sqlalchemy
+python-dotenv
+
+#fastapi
+fastapi
+uvicorn
+pydantic

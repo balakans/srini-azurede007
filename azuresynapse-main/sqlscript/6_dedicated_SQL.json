@@ -1,0 +1,17 @@
+{
+	"name": "6_dedicated_SQL",
+	"properties": {
+		"content": {
+			"query": "--Create Dedicated SQL Pool\n\nCREATE DATABASE inceptez_retaildb\n(\n    EDITION = 'DataWarehouse',\n    SERVICE_OBJECTIVE = 'DW100c'\n);\n\nCREATE SCHEMA bank_schema;\n\nCreate table bank_schema.bank_txns\n(\n    txnid int,\n    txndate date,\n    custid varchar(20),\n    amt float,\n    branch varchar(50),\n    region varchar(50)\n)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN,  -- distributes data evenly across all nodes\n    CLUSTERED COLUMNSTORE INDEX  --large amount of data, compress and best of performance\n);\n\n--supports all CRUD(create,read,update,delete) operations\n\nselect * from bank_schema.bank_txns;\n\n\nINSERT INTO bank_schema.bank_txns (txnid, txndate, custid, amt, branch, region)\nVALUES \n(1001, '2026-04-01', 'CUST001', 1500.50, 'T. Nagar', 'Chennai');\nINSERT INTO bank_schema.bank_txns (txnid, txndate, custid, amt, branch, region)\nVALUES \n(1002, '2026-04-02', 'CUST002', 2750.00, 'Adyar', 'Chennai');\nINSERT INTO bank_schema.bank_txns (txnid, txndate, custid, amt, branch, region)\nVALUES \n(1003, '2026-04-02', 'CUST003', 500.25, 'Jayanagar', 'Bangalore');\nINSERT INTO bank_schema.bank_txns (txnid, txndate, custid, amt, branch, region)\nVALUES \n(1004, '2026-04-03', 'CUST001', 3200.00, 'T. Nagar', 'Chennai');\nINSERT INTO bank_schema.bank_txns (txnid, txndate, custid, amt, branch, region)\nVALUES \n(1005, '2026-04-05', 'CUST004', 120.00, 'Hitech City', 'Hyderabad');\n\n\nselect * from bank_schema.bank_txns;\n\n--update\nUPDATE bank_schema.bank_txns set amt = 2000 where branch = 'Jayanagar'\n\nselect * from bank_schema.bank_txns;\n\n\n--delete\nDELETE FROM bank_schema.bank_txns where txnid=1005;\n\nselect * from bank_schema.bank_txns;\n\n\n--HASH\n\nCreate table bank_schema.bank_txns_hash\n(\n    txnid int,\n    txndate date,\n    custid varchar(20),\n    amt float,\n    branch varchar(50),\n    region varchar(50)\n)\nWITH\n(\n    CLUSTERED COLUMNSTORE INDEX,  --large amount of data, compress and best of performance\n    DISTRIBUTION = HASH(region)  -- distributes data evenly across all nodes\n);\n\n--replicate\n\nCreate table bank_schema.bank_txns_replicate\n(\n    txnid int,\n    txndate date,\n    custid varchar(20),\n    amt float,\n    branch varchar(50),\n    region varchar(50)\n)\nWITH\n(\n    CLUSTERED COLUMNSTORE INDEX,  --large amount of data, compress and best of performance\n    DISTRIBUTION = REPLICATE  \n);\n\n\n--heap index\nCreate table bank_schema.bank_txns_heap_indx\n(\n    txnid int,\n    txndate date,\n    custid varchar(20),\n    amt float,\n    branch varchar(50),\n    region varchar(50)\n)\nWITH\n(\n    HEAP, \n    DISTRIBUTION = REPLICATE  \n);\n\n--clustered index\n\nCreate table bank_schema.bank_txns_cluster_indx\n(\n    txnid int,\n    txndate date,\n    custid varchar(20),\n    amt float,\n    branch varchar(50),\n    region varchar(50)\n)\nWITH\n(\n    CLUSTERED INDEX(region), \n    DISTRIBUTION = REPLICATE  \n);\n\nselect * from INFORMATION_SCHEMA.TABLES\n\n\n/*\n\nRow oriented data storage \ntxnid,txndate\n101,2026-01-01\n102,2026-01-01\n103,2026-01-01\n\nColumn oriented data storage\n101,102,103\n2026-01-01,2026-01-01,2026-01-01\n\n\n*/\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "inceptez_ddw",
+				"poolName": "inceptez_ddw"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,239 @@
+{
+	"name": "6_read_serverless_table",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "inceptezspark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "cc64b879-6274-4f96-95f5-328100247c7e"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"3b2afd87-d9a1-4a96-8f25-0669a55640ac": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "TXN0001",
+										"1": "2025-10-01",
+										"2": "C0001",
+										"3": "18780.0",
+										"4": "Branch-C",
+										"5": "East",
+										"6": "Cash"
+									},
+									{
+										"0": "TXN0002",
+										"1": "2025-10-15",
+										"2": "C0002",
+										"3": "3293.0",
+										"4": "Branch-D",
+										"5": "West",
+										"6": "Card"
+									},
+									{
+										"0": "TXN0003",
+										"1": "2025-10-04",
+										"2": "C0003",
+										"3": "15543.0",
+										"4": "Branch-C",
+										"5": "East",
+										"6": "Card"
+									},
+									{
+										"0": "TXN0004",
+										"1": "2025-10-15",
+										"2": "C0004",
+										"3": "91749.0",
+										"4": "Branch-D",
+										"5": "West",
+										"6": "NetBanking"
+									},
+									{
+										"0": "TXN0005",
+										"1": "2025-10-04",
+										"2": "C0005",
+										"3": "90212.0",
+										"4": "Branch-A",
+										"5": "South",
+										"6": "Card"
+									},
+									{
+										"0": "TXN0006",
+										"1": "2025-10-02",
+										"2": "C0006",
+										"3": "34765.0",
+										"4": "Branch-A",
+										"5": "South",
+										"6": "Cash"
+									},
+									{
+										"0": "TXN0007",
+										"1": "2025-10-03",
+										"2": "C0007",
+										"3": "52588.0",
+										"4": "Branch-D",
+										"5": "West",
+										"6": "NetBanking"
+									},
+									{
+										"0": "TXN0008",
+										"1": "2025-10-26",
+										"2": "C0008",
+										"3": "78851.0",
+										"4": "Branch-B",
+										"5": "North",
+										"6": "UPI"
+									},
+									{
+										"0": "TXN0009",
+										"1": "2025-10-05",
+										"2": "C0009",
+										"3": "63295.0",
+										"4": "Branch-D",
+										"5": "West",
+										"6": "NetBanking"
+									},
+									{
+										"0": "TXN0010",
+										"1": "2025-10-27",
+										"2": "C0010",
+										"3": "49826.0",
+										"4": "Branch-B",
+										"5": "North",
+										"6": "UPI"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "txn_id",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "txn_date",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "cust_id",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "amount",
+										"type": "double"
+									},
+									{
+										"key": "4",
+										"name": "branch",
+										"type": "string"
+									},
+									{
+										"key": "5",
+										"name": "region",
+										"type": "string"
+									},
+									{
+										"key": "6",
+										"name": "payment_type",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala",
+							"wranglerEntryContext": {
+								"dataframeType": "pyspark"
+							}
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "sum",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"3"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/660da862-ec29-4eb2-a8b7-c87550e4277d/resourceGroups/inceptez-synapse-rg/providers/Microsoft.Synapse/workspaces/inceptezsynapse-ws/bigDataPools/inceptezspark",
+				"name": "inceptezspark",
+				"type": "Spark",
+				"endpoint": "https://inceptezsynapse-ws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/inceptezspark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.5",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"serverless_endpoint = \"inceptezsynapse-ws-ondemand.sql.azuresynapse.net\"\n",
+					"database_name = \"inceptezdb\"\n",
+					"table_name = \"dbo.ext_bankdata\"\n",
+					"\n",
+					"# 2. Build the JDBC URL\n",
+					"jdbc_url = f\"jdbc:sqlserver://{serverless_endpoint}:1433;database={database_name};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=30;\"\n",
+					"\n",
+					"# 3. Read the table into a DataFrame\n",
+					"df = spark.read \\\n",
+					"    .format(\"com.microsoft.sqlserver.jdbc.spark\") \\\n",
+					"    .option(\"url\", jdbc_url) \\\n",
+					"    .option(\"dbtable\", table_name) \\\n",
+					"    .load()\n",
+					"\n",
+					"# Show the data\n",
+					"display(df.limit(10))"
+				],
+				"execution_count": 2
+			}
+		]
+	}
+}

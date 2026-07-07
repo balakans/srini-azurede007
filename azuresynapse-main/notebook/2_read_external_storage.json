@@ -1,0 +1,181 @@
+{
+	"name": "2_read_external_storage",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "inceptezspark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "649a723c-ba72-46bd-bc66-17d509509b26"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/660da862-ec29-4eb2-a8b7-c87550e4277d/resourceGroups/inceptez-synapse-rg/providers/Microsoft.Synapse/workspaces/inceptezsynapse-ws/bigDataPools/inceptezspark",
+				"name": "inceptezspark",
+				"type": "Spark",
+				"endpoint": "https://inceptezsynapse-ws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/inceptezspark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.5",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"### Read data from external storage account using Managed Identity"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"#Read from data lake(External Storage) using Managed Identity\n",
+					"\n",
+					"#Provide Storage blob data contributor access to the synapse workspace idenitity\n",
+					"\n",
+					"# Ensure the path matches the account name above\n",
+					"path = \"abfss://bankdata@inceptezadlsbankdata.dfs.core.windows.net/bank_txns.csv\"\n",
+					"\n",
+					"df = spark.read.format(\"csv\") \\\n",
+					"    .option(\"header\", True) \\\n",
+					"    .option(\"inferSchema\", True) \\\n",
+					"    .load(path)\n",
+					"df.show()"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"1. ### Read data from external storage account using linkedservice"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# set the linkedservice\n",
+					"spark.conf.set(\"spark.storage.synapse.inceptezadlsbankdata.linkedServiceName\", \"AzureDataLakeStorage1\")\n",
+					"\n",
+					"\n",
+					"path = \"abfss://bankdata@inceptezadlsbankdata.dfs.core.windows.net/bank_txns.csv\"\n",
+					"\n",
+					"df = spark.read.format(\"csv\") \\\n",
+					"    .option(\"header\", True) \\\n",
+					"    .option(\"inferSchema\", True) \\\n",
+					"    .load(path)\n",
+					"df.show()"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# set the linkedservice\n",
+					"spark.conf.set(\"spark.storage.synapse.inceptezloandata.linkedServiceName\", \"ls_loandata\")\n",
+					"\n",
+					"\n",
+					"path = \"abfss://loandata@inceptezloandata.dfs.core.windows.net/loan_txns.csv\"\n",
+					"\n",
+					"df = spark.read.format(\"csv\") \\\n",
+					"    .option(\"header\", True) \\\n",
+					"    .option(\"inferSchema\", True) \\\n",
+					"    .load(path)\n",
+					"df.show()"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"### Read data from external storage account using SAS token"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"sas_token = \"?sv=2025-11-05&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2026-04-16T10:35:02Z&st=2026-04-16T02:20:02Z&spr=https&sig=FH9pQzJMkmO%2Fef9G2V88QL21WBTL9qfmU5IhHvJlHWk%3D\"\n",
+					"\n",
+					"spark.conf.set(f\"fs.azure.account.auth.type.inceptezloandata.dfs.core.windows.net\", \"SAS\")\n",
+					"spark.conf.set(f\"fs.azure.sas.token.provider.type.inceptezloandata.dfs.core.windows.net\", \n",
+					"               \"com.microsoft.azure.synapse.tokenlibrary.ConfBasedSASProvider\")\n",
+					"spark.conf.set(f\"spark.storage.synapse.loandata.inceptezloandata.dfs.core.windows.net.sas\", sas_token)\n",
+					"\n",
+					"path = \"abfss://loandata@inceptezloandata.dfs.core.windows.net/loan_txns.csv\"\n",
+					"\n",
+					"df = spark.read.format(\"csv\") \\\n",
+					"    .option(\"header\", True) \\\n",
+					"    .option(\"inferSchema\", True) \\\n",
+					"    .load(path)\n",
+					"df.show()"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"sas_token = \"?sv=2025-11-05&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2026-04-16T10:38:00Z&st=2026-04-16T02:23:00Z&spr=https&sig=NmnH%2BI2s5FYRvFCOd0cDP6uAKPZ4IQ%2BS1Vx%2F8s7ezOk%3D\"\n",
+					"\n",
+					"spark.conf.set(f\"fs.azure.account.auth.type.inceptezloandata.dfs.core.windows.net\", \"SAS\")\n",
+					"spark.conf.set(f\"fs.azure.sas.token.provider.type.inceptezloandata.dfs.core.windows.net\", \n",
+					"               \"com.microsoft.azure.synapse.tokenlibrary.ConfBasedSASProvider\")\n",
+					"spark.conf.set(f\"spark.storage.synapse.loandata.inceptezloandata.dfs.core.windows.net.sas\", sas_token)\n",
+					"\n",
+					"path = \"abfss://bankdata@inceptezadlsbankdata.dfs.core.windows.net/bank_txns.csv\"\n",
+					"\n",
+					"df = spark.read.format(\"csv\") \\\n",
+					"    .option(\"header\", True) \\\n",
+					"    .option(\"inferSchema\", True) \\\n",
+					"    .load(path)\n",
+					"df.show()"
+				],
+				"execution_count": 12
+			}
+		]
+	}
+}

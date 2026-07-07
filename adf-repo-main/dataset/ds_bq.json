@@ -1,0 +1,16 @@
+{
+	"name": "ds_bq",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GoogleBigQuery1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "GoogleBigQueryV2Object",
+		"schema": [],
+		"typeProperties": {
+			"dataset": "inceptez_insurance",
+			"table": "claim_transactions"
+		}
+	}
+}
